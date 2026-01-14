@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import logo from '../../public/logo.svg';
 
 const Layout = ({ children }) => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -47,7 +48,7 @@ const Layout = ({ children }) => {
                         to="/"
                         className="text-xl font-bold text-[#F8FAFC] hover:text-[#00E5C5] transition-colors z-50 tracking-tight"
                     >
-                        Bhavesh.<span className="text-[#00E5C5]">dev</span>
+                        Bhavesh <span className="text-[#00E5C5]">Kapre</span>
                     </Link>
 
                     {/* Desktop Nav */}
@@ -139,12 +140,8 @@ const Layout = ({ children }) => {
 
             <footer className="relative bg-[#0B1220] py-12 text-center mt-auto z-10">
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00E5C5]/50 to-transparent"></div>
-                <div className="flex justify-center space-x-8 mb-6">
-                    <a href="https://github.com/Kapre1999" target="_blank" rel="noopener noreferrer" className="text-[#94A3B8] hover:text-[#00E5C5] transition-all hover:scale-110 hover:-translate-y-1"><Github size={22} /></a>
-                    <a href="https://linkedin.com/in/bhavesh-kapre-367139216" target="_blank" rel="noopener noreferrer" className="text-[#94A3B8] hover:text-[#00E5C5] transition-all hover:scale-110 hover:-translate-y-1"><Linkedin size={22} /></a>
-                    <a href="mailto:kapre1999@yahoo.com" className="text-[#94A3B8] hover:text-[#00E5C5] transition-all hover:scale-110 hover:-translate-y-1"><Mail size={22} /></a>
-                </div>
-                <p className="text-[#94A3B8] text-sm">© {new Date().getFullYear()} <span className="text-[#00E5C5]">Bhavesh Kapre</span>. Built with React & Tailwind.</p>
+
+                <p className="text-[#94A3B8] text-sm mt-6">© {new Date().getFullYear()} <span className="text-[#00E5C5]">Bhavesh Kapre</span>. Built with React & Tailwind.</p>
             </footer>
         </div>
     );

@@ -22,7 +22,7 @@ const Hero = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-[#00E5C5] font-mono mb-5 text-sm tracking-wider"
+                            className="text-[#00E5C5] font-mono text-sm tracking-wider pt-2"
                         >
                             Hi, my name is
                         </motion.p>
@@ -77,35 +77,6 @@ const Hero = () => {
                         </motion.div>
 
                         {/* Social Links */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.6 }}
-                            className="flex gap-5 mt-10 justify-center lg:justify-start"
-                        >
-                            <a
-                                href="https://github.com/Kapre1999"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-[#94A3B8] hover:text-[#00E5C5] transition-all hover:scale-110 hover:-translate-y-1"
-                            >
-                                <Github size={24} />
-                            </a>
-                            <a
-                                href="https://linkedin.com/in/bhavesh-kapre-367139216"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-[#94A3B8] hover:text-[#00E5C5] transition-all hover:scale-110 hover:-translate-y-1"
-                            >
-                                <Linkedin size={24} />
-                            </a>
-                            <a
-                                href="mailto:kapre1999@yahoo.com"
-                                className="text-[#94A3B8] hover:text-[#00E5C5] transition-all hover:scale-110 hover:-translate-y-1"
-                            >
-                                <Mail size={24} />
-                            </a>
-                        </motion.div>
                     </div>
 
                     <motion.div
@@ -134,7 +105,7 @@ const Hero = () => {
 
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 
