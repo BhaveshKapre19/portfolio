@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
-import logo from '../../public/logo.svg';
 
 const Layout = ({ children }) => {
     const [isScrolled, setIsScrolled] = useState(false);
