@@ -126,16 +126,6 @@ export default function HeroSection() {
               >
                 View Projects
               </motion.button>
-              <motion.a
-                href={personalInfo.resumeUrl}
-                download
-                className="px-6 py-3 border border-gray-700 hover:border-gray-500 text-gray-300 rounded-lg font-medium transition-all flex items-center gap-2"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <Download size={18} />
-                Download Resume
-              </motion.a>
               <motion.button
                 onClick={scrollToContact}
                 className="px-6 py-3 border border-gray-700 hover:border-gray-500 text-gray-300 rounded-lg font-medium transition-all flex items-center gap-2"
