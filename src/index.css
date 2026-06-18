@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #fff;
+}
+
+* {
+  cursor: none;
+}
+a, button, input, textarea, [role="button"] {
+  cursor: none;
+}
+
+@media (max-width: 768px) {
+  * {
+    cursor: auto;
+  }
+  a, button, input, textarea, [role="button"] {
+    cursor: auto;
+  }
+}
