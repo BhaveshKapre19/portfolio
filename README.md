@@ -1,16 +1,41 @@
-# React + Vite
+# Bhavesh Kapre Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite portfolio configured for GitHub Pages deployment at:
 
-Currently, two official plugins are available:
+https://bhaveshkapre19.github.io/portfolio/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Local Development
 
-## React Compiler
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Production Build
 
-## Expanding the ESLint configuration
+```bash
+npm run build
+npm run preview
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The Vite `base` option is set to `/portfolio/` so built assets load correctly from this repository's GitHub Pages URL.
+
+## Deploy With GitHub Actions
+
+This repository includes `.github/workflows/deploy.yml`. On every push to `main`, GitHub Actions will:
+
+1. Install dependencies with `npm ci`
+2. Build the app with `npm run build`
+3. Publish the `dist` folder to GitHub Pages
+
+In the GitHub repository settings, set **Pages > Build and deployment > Source** to **GitHub Actions**.
+
+## Manual Deploy
+
+You can also publish manually with:
+
+```bash
+npm run deploy
+```
+
+That command builds the app and publishes `dist` to the `gh-pages` branch using the `gh-pages` package.

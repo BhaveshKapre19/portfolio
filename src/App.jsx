@@ -15,7 +15,7 @@ import Footer from './sections/Footer';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <LoadingScreen />
       <CustomCursor />
       <Navbar />

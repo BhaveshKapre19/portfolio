@@ -3,6 +3,15 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Download, Mail } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
+const particles = Array.from({ length: 30 }, (_, i) => ({
+  id: i,
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+  size: Math.random() * 3 + 1,
+  duration: Math.random() * 5 + 3,
+  delay: Math.random() * 5,
+}));
+
 function Typewriter({ texts }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
@@ -36,15 +45,6 @@ function Typewriter({ texts }) {
 }
 
 function ParticleBackground() {
-  const particles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 3 + 1,
-    duration: Math.random() * 5 + 3,
-    delay: Math.random() * 5,
-  }));
-
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {particles.map((p) => (
