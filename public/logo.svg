@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Glowing Background Effect -->
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5C5" />
+      <stop offset="100%" stop-color="#2DD4BF" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Ring (Broken Tech Circle) -->
+  <circle cx="50" cy="50" r="45" stroke="#00E5C5" stroke-width="2" stroke-opacity="0.3" stroke-dasharray="20 10" />
+  <path d="M50 5 A 45 45 0 0 1 95 50" stroke="#00E5C5" stroke-width="3" stroke-linecap="round" filter="url(#glow)" />
+  <path d="M50 95 A 45 45 0 0 1 5 50" stroke="#00E5C5" stroke-width="3" stroke-linecap="round" filter="url(#glow)" />
+
+  <!-- Monogram BK -->
+  <g transform="translate(22, 22) scale(0.56)">
+    <!-- Letter B -->
+    <path d="M10 0 L10 100 M10 0 L50 0 C75 0 75 50 50 50 C75 50 75 100 50 100 L10 100 M10 50 L50 50" 
+          stroke="#F8FAFC" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    
+    <!-- Letter K (Integrated) -->
+    <path d="M60 0 L60 100 M60 50 L90 0 M60 50 L90 100" 
+          stroke="url(#neonGradient)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+  </g>
+</svg>
