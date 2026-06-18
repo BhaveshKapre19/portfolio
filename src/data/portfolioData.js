@@ -1,3 +1,28 @@
+import bloggerAdminAddUser from '../assets/projects/Blogger/admin_add_user.png';
+import bloggerAdminCategoriesEdit from '../assets/projects/Blogger/admin_categories_edit.png';
+import bloggerAdminCategorieList from '../assets/projects/Blogger/admin_categorie_list.png';
+import bloggerAdminPanel from '../assets/projects/Blogger/admin_panel.png';
+import bloggerAdminPostEdit from '../assets/projects/Blogger/admin_post_edit.png';
+import bloggerAdminPostLists from '../assets/projects/Blogger/admin_post_lists.png';
+import bloggerAdminUsersList from '../assets/projects/Blogger/admin_users_list.png';
+import bloggerAdminUserEdit from '../assets/projects/Blogger/admin_user_edit.png';
+import bloggerBlogHome from '../assets/projects/Blogger/blog_home.png';
+import bloggerBlogPostDetails from '../assets/projects/Blogger/blog_post_details.png';
+import bloggerDatabaseDesign from '../assets/projects/Blogger/database_design.png';
+import bloggerDirStructure from '../assets/projects/Blogger/dir_structure.png';
+import cloudBanner from '../assets/projects/CloudInfra/banner.png';
+import mvcAdminPanel from '../assets/projects/MVC_Framework/admin_panel.png';
+import mvcAdminPostAdd from '../assets/projects/MVC_Framework/admin_post_add.png';
+import mvcAdminPostsList from '../assets/projects/MVC_Framework/admin_posts_list.png';
+import mvcBlogHome from '../assets/projects/MVC_Framework/blog_home.png';
+import mvcBlogPostLists from '../assets/projects/MVC_Framework/blog_post_lists.png';
+import mvcBlogPostsDetail from '../assets/projects/MVC_Framework/blog_posts_detail.png';
+import mvcDatabaseDesign from '../assets/projects/MVC_Framework/database_design.png';
+import mvcDirStructure from '../assets/projects/MVC_Framework/dir_str.png';
+import qaDirStructure from '../assets/projects/QA-System/dir_structure.png';
+import qaGui from '../assets/projects/QA-System/gui_ss.png';
+import stockBanner from '../assets/projects/StockPrice/banner.png';
+
 export const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
@@ -17,7 +42,7 @@ export const personalInfo = {
   location: 'Burhanpur, Madhya Pradesh, India',
   github: 'https://github.com/Kapre1999',
   linkedin: 'https://linkedin.com/in/bhavesh-kapre-367139216',
-  resumeUrl: '/resume.docx',
+  resumeUrl: `${import.meta.env.BASE_URL}resume.docx`,
 };
 
 export const aboutText = `I'm a Computer Science Engineer (B.Tech, 2022) with a strong foundation in backend development, REST APIs, cloud computing, and database design. My technical expertise spans Python (Flask, Django REST Framework), PHP, AWS (EC2, S3, IAM), Docker, Linux, and MySQL.
@@ -99,15 +124,15 @@ export const projects = [
     description: 'Designed and developed a lightweight MVC framework entirely from scratch without using Laravel or CodeIgniter. Implemented routing, controllers, models, view rendering, and authentication architecture with a reusable project structure. This framework later became the foundation of the Technical Blogging CMS, demonstrating framework-level design thinking and reusable architecture.',
     tech: ['PHP', 'MVC', 'MySQL'],
     github: 'https://github.com/BhaveshKapre19/Custom-PHP-MVC-Framework',
-    image: '/MVC_Framework/dir_str.png',
+    image: mvcDirStructure,
     screenshots: [
-      '/MVC_Framework/blog_home.png',
-      '/MVC_Framework/blog_post_lists.png',
-      '/MVC_Framework/blog_posts_detail.png',
-      '/MVC_Framework/admin_panel.png',
-      '/MVC_Framework/admin_post_add.png',
-      '/MVC_Framework/admin_posts_list.png',
-      '/MVC_Framework/database_design.png',
+      mvcBlogHome,
+      mvcBlogPostLists,
+      mvcBlogPostsDetail,
+      mvcAdminPanel,
+      mvcAdminPostAdd,
+      mvcAdminPostsList,
+      mvcDatabaseDesign,
     ],
   },
   {
@@ -115,44 +140,43 @@ export const projects = [
     description: 'A complete blogging platform developed using the custom PHP MVC Framework. Features user authentication, admin dashboard, CRUD operations, post management, category management, and an optimized MySQL schema. This project demonstrates framework reuse and scalable application architecture.',
     tech: ['PHP', 'MySQL', 'MVC', 'Bootstrap'],
     github: 'https://github.com/BhaveshKapre19/Blogging-CMS',
-    image: '/Blogger/blog_home.png',
+    image: bloggerBlogHome,
     screenshots: [
-      '/Blogger/blog_home.png',
-      '/Blogger/blog_post_details.png',
-      '/Blogger/admin_panel.png',
-      '/Blogger/admin_post_lists.png',
-      '/Blogger/admin_post_edit.png',
-      '/Blogger/admin_categorie_list.png',
-      '/Blogger/admin_categories_edit.png',
-      '/Blogger/admin_add_user.png',
-      '/Blogger/admin_user_edit.png',
-      '/Blogger/admin_users_list.png',
-      '/Blogger/database_design.png',
-      '/Blogger/dir_structure.png',
+      bloggerBlogHome,
+      bloggerBlogPostDetails,
+      bloggerAdminPanel,
+      bloggerAdminPostLists,
+      bloggerAdminPostEdit,
+      bloggerAdminCategorieList,
+      bloggerAdminCategoriesEdit,
+      bloggerAdminAddUser,
+      bloggerAdminUserEdit,
+      bloggerAdminUsersList,
+      bloggerDatabaseDesign,
+      bloggerDirStructure,
     ],
   },
   {
     title: 'AWS Cloud File Storage Deployment',
     description: 'Deployed a self-hosted file storage server using the official FileCloud AMI on AWS EC2. Integrated Amazon S3 for persistent object storage. Configured IAM Roles for role-based authentication, eliminating static access keys. Performed full Linux server setup including networking, firewall rules, Nginx reverse proxy, and service management.',
     tech: ['AWS EC2', 'Amazon S3', 'IAM', 'Linux', 'Nginx'],
-    image: '/projects/cloud-architecture.png',
+    image: cloudBanner,
   },
   {
     title: 'Stock Price Prediction Dashboard',
     description: 'Built machine learning models (LSTM/regression) for predicting stock price trends using historical market data with full feature engineering and preprocessing pipeline. Developed an interactive real-time visualization dashboard using Plotly Dash, delivering a complete end-to-end ML workflow from raw data to a deployable UI.',
     tech: ['Python', 'TensorFlow', 'Plotly Dash', 'LSTM'],
-    image: '/projects/stock-dashboard.png',
+    image: stockBanner,
   },
   {
     title: 'COVID-19 Statistics Chatbot',
     description: 'Desktop chatbot built with Python and Tkinter that fetches live COVID-19 statistics via a public REST API. Features real-time API integration, interactive GUI, dynamic query handling, and live COVID statistics display for intuitive data exploration.',
     tech: ['Python', 'Tkinter', 'REST API'],
     github: 'https://github.com/BhaveshKapre19/COVID-19-Q-A-Chatbot',
-    image: '/QA-System/gui_ss.png',
+    image: qaGui,
     screenshots: [
-      '/QA-System/gui_ss.png',
-      '/QA-System/dir_structure.png',
-      '/QA-System/README.md',
+      qaGui,
+      qaDirStructure,
     ],
   },
 ];

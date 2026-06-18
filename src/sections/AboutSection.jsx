@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Code2, Cloud, Database, Server } from 'lucide-react';
+import profileImg from '../assets/profile.jpg';
 import { aboutText } from '../data/portfolioData';
 import { useInView } from '../hooks/useInView';
 
@@ -47,6 +48,13 @@ export default function AboutSection() {
             transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
           >
             <div className="bg-gray-900/60 border border-gray-800 rounded-xl p-6 backdrop-blur-sm">
+              <div className="mb-6 overflow-hidden rounded-lg border border-gray-800 bg-gray-950">
+                <img
+                  src={profileImg}
+                  alt="Bhavesh Kapre"
+                  className="aspect-[4/3] w-full object-cover object-center"
+                />
+              </div>
               <h3 className="text-white font-semibold mb-6 text-lg">Quick Highlights</h3>
               <div className="grid grid-cols-2 gap-4">
                 {highlights.map((item, idx) => (
