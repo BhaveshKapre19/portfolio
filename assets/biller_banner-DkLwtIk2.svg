@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050a14" />
+      <stop offset="50%" stop-color="#0b1329" />
+      <stop offset="100%" stop-color="#070c18" />
+    </linearGradient>
+    <linearGradient id="primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#151f33" />
+      <stop offset="100%" stop-color="#0c1322" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="30" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Grid overlay -->
+  <g opacity="0.12" stroke="#38bdf8" stroke-width="1">
+    <line x1="0" y1="90" x2="1200" y2="90" />
+    <line x1="0" y1="180" x2="1200" y2="180" />
+    <line x1="0" y1="270" x2="1200" y2="270" />
+    <line x1="0" y1="360" x2="1200" y2="360" />
+    <line x1="0" y1="450" x2="1200" y2="450" />
+    <line x1="0" y1="540" x2="1200" y2="540" />
+    <line x1="150" y1="0" x2="150" y2="630" />
+    <line x1="300" y1="0" x2="300" y2="630" />
+    <line x1="450" y1="0" x2="450" y2="630" />
+    <line x1="600" y1="0" x2="600" y2="630" />
+    <line x1="750" y1="0" x2="750" y2="630" />
+    <line x1="900" y1="0" x2="900" y2="630" />
+    <line x1="1050" y1="0" x2="1050" y2="630" />
+  </g>
+
+  <!-- Ambient Glows -->
+  <circle cx="200" cy="180" r="160" fill="#2563eb" opacity="0.22" filter="url(#glow)" />
+  <circle cx="950" cy="420" r="180" fill="#0284c7" opacity="0.18" filter="url(#glow)" />
+
+  <!-- Main Desktop Window Mockup -->
+  <g transform="translate(80, 70)">
+    <!-- Window Shadow & Frame -->
+    <rect width="1040" height="490" rx="16" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="2" />
+    
+    <!-- Titlebar -->
+    <rect width="1040" height="44" rx="16" fill="#090e1a" />
+    <rect y="32" width="1040" height="12" fill="#090e1a" />
+    <line x1="0" y1="44" x2="1040" y2="44" stroke="#1e293b" stroke-width="1" />
+    
+    <!-- Window Controls -->
+    <circle cx="24" cy="22" r="6" fill="#ef4444" />
+    <circle cx="44" cy="22" r="6" fill="#f59e0b" />
+    <circle cx="64" cy="22" r="6" fill="#10b981" />
+    
+    <!-- Title -->
+    <text x="520" y="27" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="600" text-anchor="middle" letter-spacing="1">
+      BILLER POS &amp; ERP — TAURI DESKTOP CLIENT + DJANGO LAN BACKEND
+    </text>
+
+    <!-- Sidebar -->
+    <rect x="0" y="44" width="200" height="446" fill="#0a0f1d" />
+    <line x1="200" y1="44" x2="200" y2="490" stroke="#1e293b" stroke-width="1" />
+    
+    <!-- Sidebar Items -->
+    <g transform="translate(16, 64)">
+      <!-- App Brand -->
+      <rect x="0" y="0" width="32" height="32" rx="8" fill="url(#primary)" />
+      <text x="16" y="22" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="900" text-anchor="middle">B</text>
+      <text x="44" y="16" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="700">BILLER ERP</text>
+      <text x="44" y="28" fill="#38bdf8" font-family="monospace" font-size="9">LAN: 192.168.1.100</text>
+
+      <!-- Nav Items -->
+      <g transform="translate(0, 52)">
+        <rect x="0" y="0" width="168" height="32" rx="6" fill="#1e293b" />
+        <text x="14" y="20" fill="#38bdf8" font-family="sans-serif" font-size="12" font-weight="600">⚡ POS Terminal (F2)</text>
+
+        <text x="14" y="58" fill="#94a3b8" font-family="sans-serif" font-size="12">📊 Dashboard</text>
+        <text x="14" y="92" fill="#94a3b8" font-family="sans-serif" font-size="12">👥 Parties &amp; CRM</text>
+        <text x="14" y="126" fill="#94a3b8" font-family="sans-serif" font-size="12">📦 Items &amp; Stock</text>
+        <text x="14" y="160" fill="#94a3b8" font-family="sans-serif" font-size="12">🧾 Sales Invoices</text>
+        <text x="14" y="194" fill="#94a3b8" font-family="sans-serif" font-size="12">📥 Purchases</text>
+        <text x="14" y="228" fill="#94a3b8" font-family="sans-serif" font-size="12">🏦 Cash &amp; Bank</text>
+        <text x="14" y="262" fill="#94a3b8" font-family="sans-serif" font-size="12">📋 GST &amp; Reports</text>
+      </g>
+    </g>
+
+    <!-- Main Content Area -->
+    <g transform="translate(220, 60)">
+      <!-- Top Bar / KPI Row -->
+      <g>
+        <!-- KPI 1 -->
+        <rect x="0" y="0" width="180" height="74" rx="10" fill="#0d1527" stroke="#1e293b" />
+        <text x="14" y="24" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="600" text-transform="uppercase">Today's Sales</text>
+        <text x="14" y="52" fill="#38bdf8" font-family="sans-serif" font-size="20" font-weight="800">₹84,250</text>
+        <text x="130" y="50" fill="#10b981" font-family="sans-serif" font-size="11" font-weight="700">+18%</text>
+
+        <!-- KPI 2 -->
+        <rect x="195" y="0" width="180" height="74" rx="10" fill="#0d1527" stroke="#1e293b" />
+        <text x="209" y="24" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="600" text-transform="uppercase">GST Output Tax</text>
+        <text x="209" y="52" fill="#f8fafc" font-family="sans-serif" font-size="20" font-weight="800">₹12,852</text>
+        <text x="325" y="50" fill="#94a3b8" font-family="monospace" font-size="9">CGST+SGST</text>
+
+        <!-- KPI 3 -->
+        <rect x="390" y="0" width="180" height="74" rx="10" fill="#0d1527" stroke="#1e293b" />
+        <text x="404" y="24" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="600" text-transform="uppercase">Active Terminal</text>
+        <text x="404" y="52" fill="#10b981" font-family="monospace" font-size="16" font-weight="700">● COUNTER-1</text>
+        <text x="500" y="50" fill="#64748b" font-family="sans-serif" font-size="10">LAN SYNC</text>
+
+        <!-- KPI 4 -->
+        <rect x="585" y="0" width="215" height="74" rx="10" fill="#0d1527" stroke="#1e293b" />
+        <text x="599" y="24" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="600" text-transform="uppercase">Thermal Printer</text>
+        <text x="599" y="52" fill="#f8fafc" font-family="sans-serif" font-size="15" font-weight="700">ESC/POS 80mm</text>
+        <text x="735" y="50" fill="#10b981" font-family="monospace" font-size="10">ONLINE</text>
+      </g>
+
+      <!-- Billing Table & Live Invoice Mockup -->
+      <g transform="translate(0, 90)">
+        <!-- Left: Cart Items Table -->
+        <rect x="0" y="0" width="530" height="315" rx="10" fill="#0a0f1d" stroke="#1e293b" />
+        
+        <!-- Table Header -->
+        <rect x="0" y="0" width="530" height="34" rx="10" fill="#0f172a" />
+        <rect x="0" y="24" width="530" height="10" fill="#0f172a" />
+        <text x="16" y="22" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="700">ITEM DESCRIPTION</text>
+        <text x="250" y="22" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="700">HSN</text>
+        <text x="315" y="22" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="700">QTY</text>
+        <text x="375" y="22" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="700">RATE</text>
+        <text x="465" y="22" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="700">TOTAL</text>
+        <line x1="0" y1="34" x2="530" y2="34" stroke="#1e293b" stroke-width="1" />
+
+        <!-- Table Row 1 -->
+        <text x="16" y="60" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="600">Crucial 16GB DDR5 4800MHz RAM</text>
+        <text x="250" y="60" fill="#94a3b8" font-family="monospace" font-size="11">847330</text>
+        <text x="325" y="60" fill="#f8fafc" font-family="sans-serif" font-size="12">2</text>
+        <text x="375" y="60" fill="#f8fafc" font-family="sans-serif" font-size="12">₹4,200</text>
+        <text x="465" y="60" fill="#38bdf8" font-family="sans-serif" font-size="12" font-weight="700">₹8,400</text>
+        <line x1="0" y1="78" x2="530" y2="78" stroke="#1e293b" stroke-width="1" />
+
+        <!-- Table Row 2 -->
+        <text x="16" y="104" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="600">WD Blue SN580 1TB NVMe Gen4 SSD</text>
+        <text x="250" y="104" fill="#94a3b8" font-family="monospace" font-size="11">847170</text>
+        <text x="325" y="104" fill="#f8fafc" font-family="sans-serif" font-size="12">1</text>
+        <text x="375" y="104" fill="#f8fafc" font-family="sans-serif" font-size="12">₹5,850</text>
+        <text x="465" y="104" fill="#38bdf8" font-family="sans-serif" font-size="12" font-weight="700">₹5,850</text>
+        <line x1="0" y1="122" x2="530" y2="122" stroke="#1e293b" stroke-width="1" />
+
+        <!-- Table Row 3 -->
+        <text x="16" y="148" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="600">Gigabyte B760M DS3H AX Motherboard</text>
+        <text x="250" y="148" fill="#94a3b8" font-family="monospace" font-size="11">847330</text>
+        <text x="325" y="148" fill="#f8fafc" font-family="sans-serif" font-size="12">1</text>
+        <text x="375" y="148" fill="#f8fafc" font-family="sans-serif" font-size="12">₹12,400</text>
+        <text x="465" y="148" fill="#38bdf8" font-family="sans-serif" font-size="12" font-weight="700">₹12,400</text>
+        <line x1="0" y1="166" x2="530" y2="166" stroke="#1e293b" stroke-width="1" />
+
+        <!-- Quick barcode input bar -->
+        <rect x="14" y="260" width="502" height="40" rx="8" fill="#131d31" stroke="#38bdf8" stroke-width="1.5" />
+        <text x="30" y="285" fill="#38bdf8" font-family="monospace" font-size="12">🔍 Scan Barcode or Search Item [F2]...</text>
+        <text x="440" y="285" fill="#10b981" font-family="monospace" font-size="11">&lt; 10ms Latency</text>
+      </g>
+
+      <!-- Right: Authoritative GST Bill Summary -->
+      <g transform="translate(545, 90)">
+        <rect width="255" height="315" rx="10" fill="#0d1527" stroke="#1e293b" />
+        <text x="18" y="28" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="700">Payment Tender (F10)</text>
+        <line x1="18" y1="40" x2="237" y2="40" stroke="#1e293b" stroke-width="1" />
+
+        <text x="18" y="68" fill="#94a3b8" font-family="sans-serif" font-size="12">Subtotal (Net)</text>
+        <text x="237" y="68" fill="#f8fafc" font-family="monospace" font-size="12" text-anchor="end">₹22,584.75</text>
+
+        <text x="18" y="96" fill="#94a3b8" font-family="sans-serif" font-size="12">CGST (9%)</text>
+        <text x="237" y="96" fill="#f8fafc" font-family="monospace" font-size="12" text-anchor="end">₹2,032.63</text>
+
+        <text x="18" y="124" fill="#94a3b8" font-family="sans-serif" font-size="12">SGST (9%)</text>
+        <text x="237" y="124" fill="#f8fafc" font-family="monospace" font-size="12" text-anchor="end">₹2,032.63</text>
+
+        <text x="18" y="152" fill="#94a3b8" font-family="sans-serif" font-size="12">Round Off</text>
+        <text x="237" y="152" fill="#10b981" font-family="monospace" font-size="12" text-anchor="end">-₹0.01</text>
+
+        <line x1="18" y1="172" x2="237" y2="172" stroke="#38bdf8" stroke-width="1" />
+
+        <text x="18" y="202" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="700">Grand Total</text>
+        <text x="237" y="202" fill="#38bdf8" font-family="sans-serif" font-size="20" font-weight="900" text-anchor="end">₹26,650</text>
+
+        <!-- Print & Save Button -->
+        <rect x="18" y="240" width="219" height="42" rx="8" fill="url(#primary)" />
+        <text x="127" y="266" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="700" text-anchor="middle">
+          🖨️ Complete &amp; Print Bill
+        </text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom Tech Stack Pill Badges -->
+  <g transform="translate(180, 580)">
+    <text x="0" y="20" fill="#64748b" font-family="monospace" font-size="12" font-weight="700">CORE ENGINES:</text>
+    
+    <rect x="110" y="4" width="115" height="24" rx="12" fill="#1e293b" />
+    <text x="167" y="20" fill="#38bdf8" font-family="monospace" font-size="11" text-anchor="middle">Tauri v2 Desktop</text>
+
+    <rect x="235" y="4" width="115" height="24" rx="12" fill="#1e293b" />
+    <text x="292" y="20" fill="#38bdf8" font-family="monospace" font-size="11" text-anchor="middle">Django 5.1 DRF</text>
+
+    <rect x="360" y="4" width="125" height="24" rx="12" fill="#1e293b" />
+    <text x="422" y="20" fill="#38bdf8" font-family="monospace" font-size="11" text-anchor="middle">Indian GST Engine</text>
+
+    <rect x="495" y="4" width="125" height="24" rx="12" fill="#1e293b" />
+    <text x="557" y="20" fill="#38bdf8" font-family="monospace" font-size="11" text-anchor="middle">SQLite WAL Mode</text>
+
+    <rect x="630" y="4" width="125" height="24" rx="12" fill="#1e293b" />
+    <text x="692" y="20" fill="#38bdf8" font-family="monospace" font-size="11" text-anchor="middle">ESC/POS Printing</text>
+
+    <rect x="765" y="4" width="120" height="24" rx="12" fill="#1e293b" />
+    <text x="825" y="20" fill="#10b981" font-family="monospace" font-size="11" text-anchor="middle">Atomic Row Locks</text>
+  </g>
+</svg>
