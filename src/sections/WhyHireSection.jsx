@@ -1,48 +1,42 @@
 import { motion } from 'framer-motion';
+import { Brain, Cloud, Rocket, Settings, Sparkles } from 'lucide-react';
 import { whyHireCards } from '../data/portfolioData';
 import { useInView } from '../hooks/useInView';
+
+const icons = [Brain, Settings, Cloud, Rocket];
 
 export default function WhyHireSection() {
   const [ref, inView] = useInView({ threshold: 0.1 });
 
   return (
-    <section className="py-24 relative" ref={ref}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2">
-            Why <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Hire Me</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-4" />
+    <section className="section-shell border-b border-slate-900" ref={ref}>
+      <div className="section-container">
+        <motion.div className="mx-auto mb-14 max-w-3xl text-center" initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55, ease: 'easeOut' }}>
+          <div className="section-kicker mx-auto"><Sparkles size={15} /> Why hire me</div>
+          <h2 className="section-title">Useful from day one, still hungry to grow.</h2>
+          <p className="section-subtitle">A junior engineer profile with practical project experience, cloud fundamentals, and steady learning habits.</p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {whyHireCards.map((card, idx) => (
-            <motion.div
-              key={card.title}
-              className="bg-gray-900/60 border border-gray-800 rounded-xl p-6 text-center backdrop-blur-sm hover:border-gray-700 transition-all duration-500 group"
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: idx * 0.12, ease: 'easeOut' }}
-              whileHover={{ y: -10, transition: { duration: 0.2 } }}
-            >
-              <motion.div
-                className="text-4xl mb-4"
-                whileHover={{ scale: 1.3, rotate: 10 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {whyHireCards.map((card, idx) => {
+            const Icon = icons[idx] || Rocket;
+            return (
+              <motion.article
+                key={card.title}
+                className="solid-card p-6 transition-colors duration-300 hover:border-sky-300/60"
+                initial={{ opacity: 0, y: 34 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.45, delay: idx * 0.07, ease: 'easeOut' }}
+                whileHover={{ y: -6 }}
               >
-                {card.icon}
-              </motion.div>
-              <h3 className="text-white font-semibold mb-2 group-hover:text-blue-400 transition-colors duration-300">
-                {card.title}
-              </h3>
-              <p className="text-gray-400 text-sm">{card.description}</p>
-            </motion.div>
-          ))}
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-sky-300/25 bg-slate-950 text-sky-300">
+                  <Icon size={24} />
+                </div>
+                <h3 className="font-display text-xl font-bold text-white">{card.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-400">{card.description}</p>
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

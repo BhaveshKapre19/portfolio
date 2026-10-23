@@ -1,87 +1,70 @@
 import { motion } from 'framer-motion';
-import { Code2, Cloud, Database, Server } from 'lucide-react';
+import { Code2, Cloud, Database, Server, ShieldCheck } from 'lucide-react';
 import profileImg from '../assets/profile.jpg';
 import { aboutText } from '../data/portfolioData';
 import { useInView } from '../hooks/useInView';
 
 const highlights = [
-  { icon: Server, label: 'Backend Dev', color: 'text-blue-400' },
-  { icon: Cloud, label: 'AWS Cloud', color: 'text-purple-400' },
-  { icon: Database, label: 'Databases', color: 'text-green-400' },
-  { icon: Code2, label: 'APIs', color: 'text-orange-400' },
+  { icon: Server, label: 'Backend systems', detail: 'APIs, auth, services' },
+  { icon: Cloud, label: 'Cloud deployment', detail: 'AWS, Linux, Nginx' },
+  { icon: Database, label: 'Data design', detail: 'MySQL, schemas, queries' },
+  { icon: Code2, label: 'Full build flow', detail: 'From idea to deployment' },
 ];
 
 export default function AboutSection() {
   const [ref, inView] = useInView({ threshold: 0.1 });
 
   return (
-    <section id="about" className="py-24 relative" ref={ref}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="about" className="section-shell border-b border-slate-900" ref={ref}>
+      <div className="section-container">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 40 }}
+          className="mx-auto mb-14 max-w-3xl text-center"
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2">
-            About <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Me</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-4" />
+          <div className="section-kicker mx-auto"><ShieldCheck size={15} /> About</div>
+          <h2 className="section-title">A backend developer with a practical cloud mindset.</h2>
+          <p className="section-subtitle">I focus on the unglamorous parts that make software dependable: clean data models, stable APIs, deployable services, and clear operational thinking.</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-12 items-start">
+        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <motion.div
-            className="lg:col-span-3"
-            initial={{ opacity: 0, x: -40 }}
+            className="solid-card overflow-hidden p-4"
+            initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+            transition={{ duration: 0.55, delay: 0.12, ease: 'easeOut' }}
           >
-            <div className="text-gray-400 leading-relaxed space-y-4 whitespace-pre-line">
-              {aboutText}
+            <img src={profileImg} alt="Bhavesh Kapre" className="aspect-[4/5] w-full rounded-xl object-cover object-center sm:aspect-[4/3] lg:aspect-[4/5]" />
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {highlights.map((item, idx) => (
+                <motion.div
+                  key={item.label}
+                  className="rounded-xl border border-slate-800 bg-[#080d18] p-4"
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.35, delay: 0.25 + idx * 0.06, ease: 'easeOut' }}
+                  whileHover={{ y: -4 }}
+                >
+                  <item.icon className="mb-3 text-sky-300" size={22} />
+                  <p className="text-sm font-bold text-white">{item.label}</p>
+                  <p className="mt-1 text-xs leading-5 text-slate-500">{item.detail}</p>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
           <motion.div
-            className="lg:col-span-2"
-            initial={{ opacity: 0, x: 40 }}
+            className="solid-card p-6 sm:p-8"
+            initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.55, delay: 0.18, ease: 'easeOut' }}
           >
-            <div className="bg-gray-900/60 border border-gray-800 rounded-xl p-6 backdrop-blur-sm">
-              <div className="mb-6 overflow-hidden rounded-lg border border-gray-800 bg-gray-950">
-                <img
-                  src={profileImg}
-                  alt="Bhavesh Kapre"
-                  className="aspect-[4/3] w-full object-cover object-center"
-                />
-              </div>
-              <h3 className="text-white font-semibold mb-6 text-lg">Quick Highlights</h3>
-              <div className="grid grid-cols-2 gap-4">
-                {highlights.map((item, idx) => (
-                  <motion.div
-                    key={item.label}
-                    className="bg-gray-800/50 rounded-lg p-4 text-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.4 + idx * 0.1, ease: 'easeOut' }}
-                    whileHover={{ y: -6, scale: 1.02 }}
-                  >
-                    <item.icon className={`${item.color} mx-auto mb-2`} size={24} />
-                    <p className="text-gray-300 text-sm font-medium">{item.label}</p>
-                  </motion.div>
-                ))}
-              </div>
-
-              <motion.div
-                className="mt-6 p-4 bg-blue-500/5 border border-blue-500/10 rounded-lg"
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                <p className="text-blue-300 text-sm font-mono">
-                  &ldquo;Ready to build and deploy production-grade systems.&rdquo;
-                </p>
-              </motion.div>
+            <div className="space-y-5 whitespace-pre-line text-base leading-8 text-slate-300">
+              {aboutText}
+            </div>
+            <div className="mt-8 border-l-2 border-sky-300 bg-slate-950 p-5">
+              <p className="font-mono text-sm leading-7 text-sky-200">Ready to join a team where dependable backend work, cloud fundamentals, and steady learning matter.</p>
             </div>
           </motion.div>
         </div>

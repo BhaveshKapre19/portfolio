@@ -1,15 +1,15 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Mail } from 'lucide-react';
+import { ArrowDown, ArrowRight, Cloud, Download, Mail, Server, ShieldCheck, Terminal } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-const particles = Array.from({ length: 30 }, (_, i) => ({
+const particles = Array.from({ length: 22 }, (_, i) => ({
   id: i,
   x: Math.random() * 100,
   y: Math.random() * 100,
-  size: Math.random() * 3 + 1,
-  duration: Math.random() * 5 + 3,
-  delay: Math.random() * 5,
+  size: Math.random() * 2 + 1,
+  duration: Math.random() * 6 + 5,
+  delay: Math.random() * 4,
 }));
 
 function Typewriter({ texts }) {
@@ -23,36 +23,34 @@ function Typewriter({ texts }) {
       if (displayText.length < currentText.length) {
         setDisplayText(currentText.slice(0, displayText.length + 1));
       } else {
-        setTimeout(() => setIsDeleting(true), 2000);
+        setTimeout(() => setIsDeleting(true), 1800);
       }
+    } else if (displayText.length > 0) {
+      setDisplayText(displayText.slice(0, -1));
     } else {
-      if (displayText.length > 0) {
-        setDisplayText(displayText.slice(0, -1));
-      } else {
-        setIsDeleting(false);
-        setCurrentIndex((prev) => (prev + 1) % texts.length);
-      }
+      setIsDeleting(false);
+      setCurrentIndex((prev) => (prev + 1) % texts.length);
     }
   }, [currentIndex, displayText, texts, isDeleting]);
 
   useEffect(() => {
-    const speed = isDeleting ? 50 : 100;
+    const speed = isDeleting ? 40 : 85;
     const timer = setTimeout(type, speed);
     return () => clearTimeout(timer);
   }, [type, isDeleting]);
 
-  return <span>{displayText}<span className="animate-pulse text-blue-400">|</span></span>;
+  return <span>{displayText}<span className="text-sky-300">_</span></span>;
 }
 
 function ParticleBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-70">
       {particles.map((p) => (
-        <motion.div
+        <motion.span
           key={p.id}
-          className="absolute rounded-full bg-blue-400/20"
+          className="absolute rounded-full bg-sky-300/50"
           style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size }}
-          animate={{ y: [0, -30, 0], opacity: [0.2, 0.6, 0.2] }}
+          animate={{ y: [0, -22, 0], opacity: [0.15, 0.72, 0.15] }}
           transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: 'easeInOut' }}
         />
       ))}
@@ -60,123 +58,111 @@ function ParticleBackground() {
   );
 }
 
+const metrics = [
+  { label: 'Core stack', value: 'Python + AWS' },
+  { label: 'Focus', value: 'APIs + Cloud' },
+  { label: 'Ready for', value: 'Backend roles' },
+];
+
 export default function HeroSection() {
   const scrollToProjects = () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative flex min-h-dvh items-center overflow-hidden border-b border-slate-800/80 pt-24 sm:pt-28">
       <ParticleBackground />
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-300/60 to-transparent pointer-events-none" />
+      <div className="section-container relative z-10 pb-16">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
+          <motion.div
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: 'easeOut' }}
+            className="text-center lg:text-left"
+          >
+            <div className="section-kicker mx-auto lg:mx-0">
+              <Terminal size={16} />
+              Available for backend and cloud teams
+            </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full pt-20">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          <div className="flex-1 text-center lg:text-left">
-            <motion.p
-              className="text-blue-400 font-mono text-sm mb-4 tracking-wider"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-            >
-              Hi, I'm
-            </motion.p>
+            <h1 className="font-display mt-7 text-5xl font-black leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-7xl">
+              Bhavesh Kapre
+              <span className="mt-3 block text-sky-300">builds reliable backend systems.</span>
+            </h1>
 
-            <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
-            >
-              Bhavesh{' '}
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Kapre
-              </span>
-            </motion.h1>
-
-            <motion.div
-              className="text-lg sm:text-xl text-gray-300 font-mono mb-6 h-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-            >
+            <div className="mx-auto mt-6 min-h-8 max-w-2xl font-mono text-base font-semibold text-slate-300 sm:text-lg lg:mx-0">
               <Typewriter texts={personalInfo.titles} />
-            </motion.div>
+            </div>
 
-            <motion.p
-              className="text-gray-400 max-w-xl mb-8 leading-relaxed mx-auto lg:mx-0"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45, ease: 'easeOut' }}
-            >
-              {personalInfo.introduction}
-            </motion.p>
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg lg:mx-0">
+              {personalInfo.introduction} I care about clean APIs, deployable architecture, and cloud setups that are easy to reason about.
+            </p>
 
-            <motion.div
-              className="flex flex-wrap gap-4 justify-center lg:justify-start"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
-            >
-              <motion.button
-                onClick={scrollToProjects}
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                View Projects
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+              <motion.button onClick={scrollToProjects} className="cta-primary" whileTap={{ scale: 0.98 }}>
+                View projects
+                <ArrowRight size={18} />
               </motion.button>
-              <motion.button
-                onClick={scrollToContact}
-                className="px-6 py-3 border border-gray-700 hover:border-gray-500 text-gray-300 rounded-lg font-medium transition-all flex items-center gap-2"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-              >
+              <motion.button onClick={scrollToContact} className="cta-secondary" whileTap={{ scale: 0.98 }}>
                 <Mail size={18} />
-                Contact Me
+                Contact me
               </motion.button>
-            </motion.div>
-          </div>
+              
+            </div>
+          </motion.div>
 
           <motion.div
-            className="flex-shrink-0 w-full max-w-md"
-            initial={{ opacity: 0, x: 80 }}
+            className="solid-card relative overflow-hidden p-5"
+            initial={{ opacity: 0, x: 48 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+            transition={{ duration: 0.75, delay: 0.15, ease: 'easeOut' }}
           >
-            <div className="bg-gray-900/80 border border-gray-800 rounded-xl overflow-hidden shadow-2xl shadow-black/30 backdrop-blur-sm">
-              <div className="flex items-center gap-2 px-4 py-3 bg-gray-800/50 border-b border-gray-800">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="text-xs text-gray-500 ml-2 font-mono">developer@bhavesh:~/portfolio</span>
+            <div className="absolute right-0 top-0 h-32 w-32 border-l border-b border-sky-300/20 bg-sky-300/5 pointer-events-none" />
+            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div>
+                <p className="font-mono text-xs uppercase tracking-[0.22em] text-sky-300">system profile</p>
+                <h2 className="font-display mt-2 text-2xl font-bold text-white">Production-minded builder</h2>
               </div>
-              <div className="p-4 sm:p-6 font-mono text-sm space-y-2">
-                {[
-                  { cmd: 'whoami', output: 'Bhavesh Kapre — Python Backend Developer', color: 'text-gray-300' },
-                  { cmd: 'cat about.txt', output: 'B.Tech CSE (2022) · AWS · Docker · Linux', color: 'text-gray-300' },
-                  { cmd: './status.sh', output: '✓ Ready for new opportunities', color: 'text-green-300' },
-                ].map((item, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.8 + i * 0.2 }}>
-                    <p className="text-green-400">$ <span className="text-blue-400">{item.cmd}</span></p>
-                    <p className={`${item.color} ml-4`}>{item.output}</p>
-                  </motion.div>
-                ))}
-                <motion.p className="text-green-400 mt-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}>
-                  <span className="animate-pulse">_</span>
-                </motion.p>
+              <ShieldCheck className="text-sky-300" size={28} />
+            </div>
+
+            <div className="mt-5 space-y-3 font-mono text-sm">
+              <p className="text-emerald-300">$ deploy --target backend</p>
+              <p className="rounded-lg border border-slate-800 bg-slate-950 p-3 text-slate-300">API design, authentication flow, database schema, Linux server setup, AWS services.</p>
+              <p className="text-emerald-300">$ status --career</p>
+              <p className="rounded-lg border border-slate-800 bg-slate-950 p-3 text-slate-300">Ready for backend, cloud, and API integration opportunities.</p>
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {metrics.map((item) => (
+                <div key={item.label} className="rounded-xl border border-slate-800 bg-[#080d18] p-4">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">{item.label}</p>
+                  <p className="mt-2 text-sm font-bold text-white">{item.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <div className="rounded-xl border border-slate-800 bg-[#080d18] p-4">
+                <Server className="mb-3 text-sky-300" size={22} />
+                <p className="text-sm font-bold text-white">Backend logic</p>
+              </div>
+              <div className="rounded-xl border border-slate-800 bg-[#080d18] p-4">
+                <Cloud className="mb-3 text-sky-300" size={22} />
+                <p className="text-sm font-bold text-white">Cloud deploys</p>
               </div>
             </div>
           </motion.div>
         </div>
 
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 text-slate-600 sm:block"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 1.5, ease: 'easeInOut' }}
+          animate={{ opacity: 1, y: [0, 8, 0] }}
+          transition={{ duration: 2.2, repeat: Infinity, delay: 1.2, ease: 'easeInOut' }}
+          style={{ pointerEvents: 'none' }}
         >
-          <ArrowDown className="text-gray-500" size={24} />
+          <ArrowDown size={24} />
         </motion.div>
       </div>
     </section>

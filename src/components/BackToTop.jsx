@@ -15,13 +15,13 @@ export default function BackToTop() {
     <AnimatePresence>
       {visible && (
         <motion.button
-          className="fixed bottom-8 right-8 z-40 p-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full shadow-lg shadow-blue-500/20"
+          className="fixed bottom-6 right-6 z-40 flex min-h-12 min-w-12 items-center justify-center rounded-xl border border-sky-300 bg-sky-300 text-slate-950 shadow-xl shadow-sky-950/30"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          initial={{ opacity: 0, scale: 0, y: 20 }}
+          initial={{ opacity: 0, scale: 0.9, y: 14 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0, y: 20 }}
-          whileHover={{ scale: 1.1, y: -2 }}
-          whileTap={{ scale: 0.9 }}
+          exit={{ opacity: 0, scale: 0.9, y: 14 }}
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.94 }}
           aria-label="Back to top"
         >
           <ArrowUp size={20} />
