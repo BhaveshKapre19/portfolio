@@ -1,40 +1,70 @@
 import { motion } from 'framer-motion';
-import { Brain, Cloud, Rocket, Settings, Sparkles } from 'lucide-react';
+import { Target, CheckCircle2, ShieldCheck, Zap, HardDrive, HeartHandshake } from 'lucide-react';
 import { whyHireCards } from '../data/portfolioData';
 import { useInView } from '../hooks/useInView';
 
-const icons = [Brain, Settings, Cloud, Rocket];
+const iconMap = [Zap, ShieldCheck, HardDrive, HeartHandshake];
 
 export default function WhyHireSection() {
   const [ref, inView] = useInView({ threshold: 0.1 });
 
   return (
-    <section className="section-shell border-b border-slate-900" ref={ref}>
+    <section id="why-hire" className="section-shell border-t border-slate-800/80" ref={ref}>
       <div className="section-container">
-        <motion.div className="mx-auto mb-14 max-w-3xl text-center" initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55, ease: 'easeOut' }}>
-          <div className="section-kicker mx-auto"><Sparkles size={15} /> Why hire me</div>
-          <h2 className="section-title">Useful from day one, still hungry to grow.</h2>
-          <p className="section-subtitle">A junior engineer profile with practical project experience, cloud fundamentals, and steady learning habits.</p>
+        {/* Section Header */}
+        <motion.div
+          className="mx-auto mb-14 max-w-3xl text-center"
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          <div className="section-kicker mx-auto">
+            <Target size={14} /> Value Proposition
+          </div>
+          <h2 className="section-title">
+            Why I am ready to make an immediate impact on your engineering team.
+          </h2>
+          <p className="section-subtitle">
+            Beyond standard tutorials: proven architectural thinking, real-world systems building, and dependable character.
+          </p>
         </motion.div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* 4 Value Pillars Grid */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {whyHireCards.map((card, idx) => {
-            const Icon = icons[idx] || Rocket;
+            const Icon = iconMap[idx] || CheckCircle2;
             return (
-              <motion.article
+              <motion.div
                 key={card.title}
-                className="solid-card p-6 transition-colors duration-300 hover:border-sky-300/60"
-                initial={{ opacity: 0, y: 34 }}
+                className="solid-card group p-6 flex flex-col justify-between transition-all duration-300 hover:border-sky-400/50"
+                initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.45, delay: idx * 0.07, ease: 'easeOut' }}
-                whileHover={{ y: -6 }}
+                transition={{ duration: 0.4, delay: idx * 0.06, ease: 'easeOut' }}
+                whileHover={{ y: -4 }}
               >
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-sky-300/25 bg-slate-950 text-sky-300">
-                  <Icon size={24} />
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-sky-400/30 bg-slate-950 text-sky-400 group-hover:border-sky-400/60 transition-colors">
+                      <Icon size={20} />
+                    </div>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-sky-400">
+                      {card.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="font-display text-lg font-bold text-white group-hover:text-sky-300 transition-colors">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2.5 text-xs leading-relaxed text-slate-400">
+                    {card.description}
+                  </p>
                 </div>
-                <h3 className="font-display text-xl font-bold text-white">{card.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-400">{card.description}</p>
-              </motion.article>
+
+                <div className="mt-6 pt-3 border-t border-slate-800/80 flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
+                  <CheckCircle2 size={14} />
+                  <span>Verified Capability</span>
+                </div>
+              </motion.div>
             );
           })}
         </div>

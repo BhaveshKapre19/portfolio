@@ -1,44 +1,100 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Briefcase, BookOpen, Route } from 'lucide-react';
+import { GraduationCap, Briefcase, HeartHandshake, Rocket, Route, CheckCircle2 } from 'lucide-react';
 import { timeline } from '../data/portfolioData';
 import { useInView } from '../hooks/useInView';
 
-const iconMap = { education: GraduationCap, career: Briefcase, break: BookOpen };
+const iconMap = {
+  education: GraduationCap,
+  growth: HeartHandshake,
+  career: Rocket,
+};
 
 export default function ExperienceSection() {
   const [ref, inView] = useInView({ threshold: 0.05 });
 
   return (
-    <section id="experience" className="section-shell border-b border-slate-900" ref={ref}>
+    <section id="experience" className="section-shell border-t border-slate-800/80" ref={ref}>
       <div className="section-container">
-        <motion.div className="mx-auto mb-14 max-w-3xl text-center" initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55, ease: 'easeOut' }}>
-          <div className="section-kicker mx-auto"><Route size={15} /> Timeline</div>
-          <h2 className="section-title">A clear path from education to focused backend readiness.</h2>
-          <p className="section-subtitle">The story is direct: formal CS training, continued learning, project building, and a committed move into engineering roles.</p>
+        {/* Section Header */}
+        <motion.div
+          className="mx-auto mb-14 max-w-3xl text-center"
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          <div className="section-kicker mx-auto">
+            <Route size={14} /> Career &amp; Education Journey
+          </div>
+          <h2 className="section-title">
+            From rigorous computer science education to production software craft.
+          </h2>
+          <p className="section-subtitle">
+            A clear trajectory: formal university education, personal character tested through high-responsibility caregiving, continuous systems engineering, and immediate full-time readiness.
+          </p>
         </motion.div>
 
-        <div className="relative mx-auto max-w-4xl">
-          <div className="absolute left-5 top-0 hidden h-full w-px bg-slate-800 sm:block" />
-          <div className="space-y-5">
+        {/* Timeline Roadmap */}
+        <div className="relative mx-auto max-w-3xl">
+          {/* Vertical Track Line */}
+          <div className="absolute left-5 sm:left-6 top-3 bottom-3 w-0.5 bg-gradient-to-b from-sky-400 via-blue-500 to-emerald-400 opacity-30" />
+
+          <div className="space-y-8">
             {timeline.map((event, idx) => {
               const Icon = iconMap[event.type] || Briefcase;
+              const isCurrent = event.type === 'career';
+
               return (
                 <motion.article
-                  key={`${event.year}-${event.title}`}
-                  className="relative grid gap-4 sm:grid-cols-[2.75rem_1fr]"
-                  initial={{ opacity: 0, x: -24 }}
+                  key={event.period + event.title}
+                  className="relative flex items-start gap-4 sm:gap-6"
+                  initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.45, delay: idx * 0.08, ease: 'easeOut' }}
                 >
-                  <div className="relative z-10 flex h-11 w-11 items-center justify-center rounded-xl border border-sky-300/30 bg-slate-950 text-sky-300">
+                  {/* Timeline Node Icon */}
+                  <div
+                    className={`relative z-10 flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl border shadow-lg ${
+                      isCurrent
+                        ? 'border-emerald-400/60 bg-emerald-950 text-emerald-300 ring-4 ring-emerald-500/20'
+                        : 'border-sky-400/30 bg-slate-950 text-sky-400'
+                    }`}
+                  >
                     <Icon size={20} />
                   </div>
-                  <motion.div className="solid-card p-6" whileHover={{ x: 4 }}>
-                    <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-sky-300">{event.year}</span>
-                    <h3 className="font-display mt-2 text-xl font-bold text-white">{event.title}</h3>
-                    {event.subtitle && <p className="mt-1 text-sm font-semibold text-slate-500">{event.subtitle}</p>}
-                    <p className="mt-3 text-sm leading-7 text-slate-400">{event.description}</p>
-                  </motion.div>
+
+                  {/* Timeline Card */}
+                  <div className="solid-card flex-1 p-5 sm:p-6 transition-all duration-300 hover:border-sky-400/50">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                      <span className="font-mono text-xs font-bold uppercase tracking-wider text-sky-400">
+                        {event.period}
+                      </span>
+                      {event.grade && (
+                        <span
+                          className={`font-mono text-[11px] font-bold rounded-full px-2.5 py-0.5 border ${
+                            isCurrent
+                              ? 'border-emerald-500/40 bg-emerald-950/50 text-emerald-300'
+                              : 'border-slate-800 bg-slate-900 text-slate-300'
+                          }`}
+                        >
+                          {event.grade}
+                        </span>
+                      )}
+                    </div>
+
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-white">
+                      {event.title}
+                    </h3>
+
+                    {event.institution && (
+                      <p className="mt-0.5 text-xs font-semibold text-slate-400">
+                        {event.institution}
+                      </p>
+                    )}
+
+                    <p className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-300">
+                      {event.details}
+                    </p>
+                  </div>
                 </motion.article>
               );
             })}
