@@ -1,7 +1,9 @@
+/* <!-- hallmark: macrostructure=MS-01-bento-grid --> */
+/* <!-- hallmark: theme=TH-08-midnight-cobalt --> */
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Menu, X, FileText, Send, Sun } from 'lucide-react';
+import { Menu, X, Send, Sun, ArrowRight } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import { navLinks, personalInfo } from '../data/portfolioData';
 
@@ -37,9 +39,9 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed left-0 right-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? 'border-b border-slate-800/80 bg-[#030712]/85 shadow-lg shadow-black/30 backdrop-blur-md'
+          ? 'border-b border-[#1e2f52] bg-[#0b1120]/95 shadow-lg shadow-black/40 backdrop-blur-md'
           : 'border-b border-transparent bg-transparent'
       }`}
       initial={{ y: -80 }}
@@ -54,38 +56,38 @@ export default function Navbar() {
             className="group flex items-center gap-3 text-left focus:outline-none"
             aria-label="Bhavesh Kapre Home"
           >
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-sky-400/30 bg-gradient-to-br from-slate-900 to-slate-950 text-base font-black text-sky-400 transition-all duration-300 group-hover:border-sky-400/70 group-hover:shadow-[0_0_15px_rgba(56,189,248,0.3)]">
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/30 bg-[#101a30] text-sm font-bold text-blue-400 transition-colors group-hover:border-blue-400/70 shadow-xs">
               BK
-              <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-slate-950" />
+              <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-blue-400 ring-2 ring-[#0b1120]" />
             </div>
             <div className="hidden sm:block">
-              <span className="font-display block text-sm font-bold tracking-tight text-white group-hover:text-sky-300 transition-colors">
+              <span className="font-display block text-sm font-bold tracking-tight text-white group-hover:text-blue-300 transition-colors">
                 Bhavesh Kapre
               </span>
-              <span className="block font-mono text-[10px] uppercase tracking-wider text-slate-400">
+              <span className="block text-xs uppercase tracking-wide text-slate-400 font-medium">
                 Backend &amp; Systems
               </span>
             </div>
           </button>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden items-center gap-1 rounded-full border border-slate-800/80 bg-slate-900/60 p-1 backdrop-blur-md md:flex">
+          <nav className="hidden items-center gap-1 rounded-full border border-[#1e2f52] bg-[#101a30]/80 p-1 backdrop-blur-md md:flex" aria-label="Main Navigation">
             {navLinks.map((link) => {
               const active = activeSection === link.href.slice(1);
               return (
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`relative rounded-full px-4 py-1.5 text-xs font-bold transition-all duration-200 ${
+                  className={`relative rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
                     active
                       ? 'text-white'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                      : 'text-slate-400 hover:text-white hover:bg-[#162442]/50'
                   }`}
                 >
                   {active && (
                     <motion.span
                       layoutId="activePill"
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-sky-500/20 to-blue-600/30 border border-sky-400/40"
+                      className="absolute inset-0 rounded-full bg-blue-500/20 border border-blue-400/40"
                       transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                     />
                   )}
@@ -100,18 +102,18 @@ export default function Navbar() {
             {/* Theme Toggle Button */}
             <Link
               to="/theme"
-              className="flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1.5 text-xs font-bold text-sky-300 hover:bg-sky-500/20 hover:border-sky-400/60 transition-all"
-              title="Switch to Soft Blue & Coral theme"
+              className="flex items-center gap-1.5 rounded-full border border-blue-400/30 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold text-blue-300 hover:bg-blue-500/20 hover:border-blue-400/60 transition-colors"
+              title="Switch to Soft Blue theme"
             >
-              <Sun size={14} className="text-amber-300" />
-              <span>Soft Blue</span>
+              <Sun size={14} className="text-blue-300" />
+              <span>Theme</span>
             </Link>
 
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-900/80 text-slate-400 transition-colors hover:border-slate-700 hover:text-white"
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2f52] bg-[#101a30] text-slate-400 transition-colors hover:border-blue-400/40 hover:text-white"
               aria-label="GitHub Profile"
             >
               <GithubIcon size={16} />
@@ -120,23 +122,23 @@ export default function Navbar() {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-900/80 text-slate-400 transition-colors hover:border-slate-700 hover:text-white"
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2f52] bg-[#101a30] text-slate-400 transition-colors hover:border-blue-400/40 hover:text-white"
               aria-label="LinkedIn Profile"
             >
               <LinkedinIcon size={16} />
             </a>
             <button
               onClick={() => handleNavClick('#contact')}
-              className="cta-primary !min-h-[38px] !py-1.5 !px-3.5 !text-xs font-bold"
+              className="cta-primary !min-h-[36px] !py-1.5 !px-3.5 !text-xs font-semibold"
             >
               <Send size={13} />
-              Let's Talk
+              <span>Let's Talk</span>
             </button>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 text-slate-300 md:hidden hover:text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#1e2f52] bg-[#101a30] text-slate-300 md:hidden hover:text-white transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle mobile menu"
             aria-expanded={mobileOpen}
@@ -154,7 +156,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="border-b border-slate-800 bg-[#030712]/95 px-5 py-5 shadow-2xl backdrop-blur-xl md:hidden"
+            className="border-b border-[#1e2f52] bg-[#0b1120]/98 px-5 py-5 shadow-2xl backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col space-y-1">
               {navLinks.map((link) => {
@@ -163,40 +165,40 @@ export default function Navbar() {
                   <button
                     key={link.href}
                     onClick={() => handleNavClick(link.href)}
-                    className={`flex items-center justify-between rounded-lg px-3.5 py-2.5 text-sm font-semibold transition-colors ${
+                    className={`flex items-center justify-between rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors ${
                       active
-                        ? 'bg-sky-500/15 text-sky-300 border border-sky-400/30'
-                        : 'text-slate-300 hover:bg-slate-900 hover:text-white'
+                        ? 'bg-blue-500/15 text-blue-300 border border-blue-400/30'
+                        : 'text-slate-300 hover:bg-[#162442] hover:text-white'
                     }`}
                   >
                     <span>{link.label}</span>
-                    {active && <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />}
+                    {active && <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />}
                   </button>
                 );
               })}
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-800">
+            <div className="mt-4 pt-3 border-t border-[#1e2f52]">
               <Link
                 to="/theme"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-between rounded-lg px-3.5 py-2.5 text-xs font-bold text-sky-300 bg-sky-500/10 border border-sky-400/30"
+                className="flex items-center justify-between rounded-lg px-3.5 py-2.5 text-xs font-semibold text-blue-300 bg-blue-500/10 border border-blue-400/30 transition-colors"
               >
                 <span className="flex items-center gap-2">
-                  <Sun size={15} className="text-amber-300" />
-                  <span>Switch to Soft Blue &amp; Coral</span>
+                  <Sun size={15} className="text-blue-300" />
+                  <span>Switch to Soft Blue Theme</span>
                 </span>
-                <span>→</span>
+                <ArrowRight size={14} aria-hidden="true" />
               </Link>
             </div>
 
-            <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-4">
+            <div className="mt-4 flex items-center justify-between border-t border-[#1e2f52] pt-4">
               <div className="flex gap-2">
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-300"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2f52] bg-[#101a30] text-slate-300"
                   aria-label="GitHub"
                 >
                   <GithubIcon size={16} />
@@ -205,7 +207,7 @@ export default function Navbar() {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-300"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2f52] bg-[#101a30] text-slate-300"
                   aria-label="LinkedIn"
                 >
                   <LinkedinIcon size={16} />
@@ -213,10 +215,10 @@ export default function Navbar() {
               </div>
               <button
                 onClick={() => handleNavClick('#contact')}
-                className="cta-primary !min-h-[38px] !py-1.5 !px-4 !text-xs font-bold"
+                className="cta-primary !min-h-[36px] !py-1.5 !px-4 !text-xs font-semibold"
               >
                 <Send size={13} />
-                Contact Me
+                <span>Contact Me</span>
               </button>
             </div>
           </motion.div>

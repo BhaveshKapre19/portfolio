@@ -3,7 +3,7 @@ import { Cloud, Code, Database, Globe, Wrench } from 'lucide-react';
 export const personalInfo = {
     name: "Bhavesh Kapre",
     role: "Software Engineer | Cloud + Web Developer",
-    location: "Burhanpur, India",
+    location: "Indore, India",
     email: "bhaveshkapre19@gmail.com",
     github: "https://github.com/BhaveshKapre19",
     linkedin: "https://www.linkedin.com/in/bhavesh-kapre",

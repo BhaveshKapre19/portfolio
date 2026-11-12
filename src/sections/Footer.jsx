@@ -1,3 +1,5 @@
+/* <!-- hallmark: macrostructure=MS-01-bento-grid --> */
+/* <!-- hallmark: theme=TH-08-midnight-cobalt --> */
 import { Mail, ArrowUp } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/SocialIcons';
 import { personalInfo } from '../data/portfolioData';
@@ -8,16 +10,16 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-slate-800/80 bg-[#030712] py-10 text-xs text-slate-500">
+    <footer className="border-t border-[#1e2f52] bg-[#0b1120] py-10 text-xs text-slate-400">
       <div className="section-container">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-display text-sm font-bold text-white">Bhavesh Kapre</span>
-              <span className="text-slate-600">•</span>
-              <span className="font-mono text-[11px] text-sky-400">Full-Stack &amp; Backend Engineer</span>
+              <span className="font-display text-sm font-bold text-white tracking-tight">Bhavesh Kapre</span>
+              <span className="text-slate-600">/</span>
+              <span className="text-xs font-medium text-blue-400">Backend &amp; Cloud Engineer</span>
             </div>
-            <p className="mt-1 text-slate-500 text-[11px]">
+            <p className="mt-1 text-slate-400 text-xs">
               Engineered with React 19, Tailwind CSS v4, and Vite.
             </p>
           </div>
@@ -50,7 +52,7 @@ export default function Footer() {
             </a>
             <button
               onClick={scrollToTop}
-              className="ml-2 flex h-8 w-8 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:border-slate-700 hover:text-white transition-colors"
+              className="ml-2 flex h-8 w-8 items-center justify-center rounded-lg border border-[#1e2f52] bg-[#101a30] text-slate-400 hover:border-blue-400/40 hover:text-white transition-colors"
               aria-label="Back to top"
             >
               <ArrowUp size={14} />

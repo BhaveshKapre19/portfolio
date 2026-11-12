@@ -1,3 +1,5 @@
+/* <!-- hallmark: macrostructure=MS-01-bento-grid --> */
+/* <!-- hallmark: theme=TH-08-midnight-cobalt --> */
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -48,7 +50,7 @@ export default function CustomCursor() {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-2.5 h-2.5 bg-sky-400 rounded-full pointer-events-none z-[9999] hidden lg:block"
+        className="fixed top-0 left-0 w-2.5 h-2.5 bg-blue-400 rounded-full pointer-events-none z-[9999] hidden lg:block"
         animate={{
           x: position.x - 5,
           y: position.y - 5,
@@ -58,12 +60,12 @@ export default function CustomCursor() {
         transition={{ type: 'spring', stiffness: 600, damping: 30, mass: 0.3 }}
       />
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border border-sky-400/40 rounded-full pointer-events-none z-[9998] hidden lg:block"
+        className="fixed top-0 left-0 w-8 h-8 border border-blue-400/40 rounded-full pointer-events-none z-[9998] hidden lg:block"
         animate={{
           x: position.x - 16,
           y: position.y - 16,
           scale: isHovering ? 1.6 : 1,
-          borderColor: isHovering ? 'rgba(56, 189, 248, 0.7)' : 'rgba(56, 189, 248, 0.3)',
+          borderColor: isHovering ? 'rgba(59, 130, 246, 0.7)' : 'rgba(59, 130, 246, 0.3)',
         }}
         transition={{ type: 'spring', stiffness: 350, damping: 22, mass: 0.7 }}
       />

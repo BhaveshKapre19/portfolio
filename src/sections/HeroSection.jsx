@@ -1,3 +1,5 @@
+/* <!-- hallmark: macrostructure=MS-01-bento-grid --> */
+/* <!-- hallmark: theme=TH-08-midnight-cobalt --> */
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import {
@@ -41,15 +43,15 @@ function Typewriter({ texts }) {
   return (
     <span>
       {displayText}
-      <span className="text-sky-300">_</span>
+      <span className="text-blue-400 font-mono">_</span>
     </span>
   );
 }
 
 const metrics = [
-  { label: 'CORE STACK', value: 'Python + AWS' },
-  { label: 'FOCUS', value: 'APIs + Cloud' },
-  { label: 'READY FOR', value: 'Backend roles' },
+  { label: 'Core Stack', value: 'Python + AWS' },
+  { label: 'Primary Focus', value: 'APIs + Cloud' },
+  { label: 'Readiness', value: 'Backend roles' },
 ];
 
 export default function HeroSection() {
@@ -57,41 +59,41 @@ export default function HeroSection() {
   const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section id="home" className="relative flex min-h-[90vh] items-center overflow-hidden border-b border-slate-800/80 pt-24 pb-16 sm:pt-28">
-      {/* Subtle ambient light */}
-      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[500px] h-[300px] bg-sky-500/10 blur-[140px] rounded-full pointer-events-none" />
+    <section id="home" className="relative flex min-h-[88vh] items-center overflow-hidden border-b border-[#1e2f52] pt-24 pb-16 sm:pt-28">
+      {/* Gentle ambient light */}
+      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[520px] h-[280px] bg-blue-500/10 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="section-container relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
           {/* Left Column: Bio & Hero Copy */}
           <motion.div
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: 'easeOut' }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
             className="text-center lg:text-left"
           >
-            <div className="section-kicker mx-auto lg:mx-0">
-              <Terminal size={15} />
-              {personalInfo.availability}
+            <div className="section-badge mx-auto lg:mx-0" role="status">
+              <Terminal size={14} className="text-blue-400" />
+              <span>{personalInfo.availability}</span>
             </div>
 
-            <h1 className="font-display mt-6 text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.02]">
+            <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
               Bhavesh Kapre
-              <span className="mt-2.5 block text-sky-300">builds reliable backend systems.</span>
+              <span className="mt-2.5 block text-blue-400 font-bold">learning, building, ready to contribute.</span>
             </h1>
 
-            <div className="mx-auto mt-4 min-h-7 max-w-2xl font-mono text-base font-semibold text-slate-300 lg:mx-0">
+            <div className="mx-auto mt-4 min-h-7 max-w-2xl font-sans text-base sm:text-lg font-semibold text-blue-300 lg:mx-0">
               <Typewriter texts={personalInfo.titles} />
             </div>
 
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg lg:mx-0">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg lg:mx-0 font-normal">
               {personalInfo.introduction}
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5 lg:justify-start">
               <motion.button onClick={scrollToProjects} className="cta-primary" whileTap={{ scale: 0.98 }}>
                 <span>View projects</span>
-                <ArrowRight size={17} />
+                <ArrowRight size={16} />
               </motion.button>
               <motion.button onClick={scrollToContact} className="cta-secondary" whileTap={{ scale: 0.98 }}>
                 <Mail size={16} />
@@ -109,43 +111,50 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right Column: System Profile Card (Exact UI as in User's Screenshot) */}
+          {/* Right Column: System Profile Card */}
           <motion.div
-            className="solid-card relative overflow-hidden p-6 sm:p-7"
-            initial={{ opacity: 0, x: 30 }}
+            className="bento-card overflow-hidden p-6 sm:p-7"
+            initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.65, delay: 0.12, ease: 'easeOut' }}
+            transition={{ duration: 0.55, delay: 0.1, ease: 'easeOut' }}
           >
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div className="flex items-center justify-between border-b border-[#1e2f52] pb-4">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-sky-400 font-bold">
-                  SYSTEM PROFILE
+                <p className="text-xs uppercase tracking-wide text-blue-400 font-semibold">
+                  System Profile
                 </p>
-                <h2 className="font-display mt-1 text-2xl font-bold text-white">
-                  Production-minded builder
+                <h2 className="display mt-1 text-2xl font-bold text-white">
+                  Builder, learner, ready to contribute
                 </h2>
               </div>
-              <ShieldCheck className="text-sky-400" size={28} />
+              <ShieldCheck className="text-blue-400" size={26} />
             </div>
 
             <div className="mt-5 space-y-3 font-mono text-xs sm:text-sm">
-              <p className="text-emerald-400 font-bold">$ deploy --target backend</p>
-              <p className="rounded-xl border border-slate-800 bg-slate-950/80 p-3 text-slate-300 leading-relaxed">
+              <div className="flex items-center gap-2 text-blue-300 font-bold">
+                <span className="text-slate-500">&gt;</span>
+                <span>deploy --target backend</span>
+              </div>
+              <p className="terminal-box text-slate-200 leading-relaxed font-sans">
                 API design, authentication flow, database schema, Linux server setup, AWS services.
               </p>
-              <p className="text-emerald-400 font-bold">$ status --career</p>
-              <p className="rounded-xl border border-slate-800 bg-slate-950/80 p-3 text-slate-300 leading-relaxed">
+
+              <div className="flex items-center gap-2 text-blue-300 font-bold">
+                <span className="text-slate-500">&gt;</span>
+                <span>status --career</span>
+              </div>
+              <p className="terminal-box text-slate-200 leading-relaxed font-sans">
                 Ready for backend, cloud, and API integration opportunities.
               </p>
             </div>
 
             <div className="mt-5 grid grid-cols-3 gap-2.5">
               {metrics.map((item) => (
-                <div key={item.label} className="rounded-xl border border-slate-800 bg-[#080d18] p-3.5">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                <div key={item.label} className="terminal-box p-3">
+                  <p className="text-[11px] font-medium text-slate-400">
                     {item.label}
                   </p>
-                  <p className="mt-1 font-display text-xs sm:text-sm font-bold text-white">
+                  <p className="mt-1 text-xs sm:text-sm font-semibold text-white">
                     {item.value}
                   </p>
                 </div>
@@ -153,13 +162,13 @@ export default function HeroSection() {
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-2.5">
-              <div className="rounded-xl border border-slate-800 bg-[#080d18] p-3.5 flex items-center gap-3">
-                <Server className="text-sky-400 shrink-0" size={20} />
-                <p className="text-xs sm:text-sm font-bold text-white">Backend logic</p>
+              <div className="terminal-box p-3 flex items-center gap-3">
+                <Server className="text-blue-400 shrink-0" size={18} />
+                <p className="text-xs sm:text-sm font-semibold text-white">Backend logic</p>
               </div>
-              <div className="rounded-xl border border-slate-800 bg-[#080d18] p-3.5 flex items-center gap-3">
-                <Cloud className="text-sky-400 shrink-0" size={20} />
-                <p className="text-xs sm:text-sm font-bold text-white">Cloud deploys</p>
+              <div className="terminal-box p-3 flex items-center gap-3">
+                <Cloud className="text-blue-400 shrink-0" size={18} />
+                <p className="text-xs sm:text-sm font-semibold text-white">Cloud deploys</p>
               </div>
             </div>
           </motion.div>
