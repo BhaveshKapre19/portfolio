@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import CustomCursor from './components/CustomCursor';
 import LoadingScreen from './components/LoadingScreen';
 import BackToTop from './components/BackToTop';
 import HeroSection from './sections/HeroSection';
@@ -13,12 +12,12 @@ import WhyHireSection from './sections/WhyHireSection';
 import ContactSection from './sections/ContactSection';
 import Footer from './sections/Footer';
 import ThemeSoftBlue from './pages/ThemeSoftBlue';
+import SitemapPage from './pages/SitemapPage';
 
 function DarkPortfolio() {
   return (
     <>
       <LoadingScreen />
-      <CustomCursor />
       <Navbar />
       <main>
         <HeroSection />
@@ -41,6 +40,7 @@ function App() {
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<DarkPortfolio />} />
+        <Route path="/sitemap" element={<SitemapPage />} />
         <Route path="/theme" element={<ThemeSoftBlue />} />
         <Route path="/theme4" element={<ThemeSoftBlue />} />
         <Route path="/soft-blue" element={<ThemeSoftBlue />} />

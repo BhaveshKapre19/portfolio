@@ -33,6 +33,7 @@ import {
   ArrowUp,
   Moon,
   Menu,
+  BookOpen,
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/SocialIcons';
 import profileImg from '../assets/profile.jpg';
@@ -63,7 +64,7 @@ const timelineIconMap = {
   career: Rocket,
 };
 
-const whyHireIcons = [Zap, ShieldCheck, HardDrive, HeartHandshake];
+const whyHireIcons = [Zap, ShieldCheck, HardDrive, BookOpen];
 
 const aboutHighlights = [
   { icon: Server, label: 'REST API Development', detail: 'Django REST Framework, JWT auth, structured endpoints' },
@@ -209,15 +210,15 @@ function SoftProjectModal({ project, onClose }) {
                 <span>Source Code</span>
               </a>
             )}
-            {project.live && (
+            {(project.live || project.liveUrl) && (
               <a
-                href={project.live}
+                href={project.live || project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-soft-blue"
               >
                 <ExternalLink size={16} />
-                <span>Live Deployment</span>
+                <span>Visit Live System / Blog</span>
               </a>
             )}
           </div>
@@ -241,7 +242,9 @@ export default function ThemeSoftBlue() {
     document.title = 'Bhavesh Kapre | Python Backend Developer (Soft Blue Theme)';
 
     const handleScroll = () => {
-      const sections = navLinks.map((link) => link.href.slice(1));
+      const sections = navLinks
+        .filter((link) => !link.external)
+        .map((link) => link.href.slice(1));
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el && window.scrollY >= el.offsetTop - 120) {
@@ -264,7 +267,7 @@ export default function ThemeSoftBlue() {
   const onSubmit = (data) => {
     const subject = encodeURIComponent(`Portfolio Inquiry from ${data.name}: ${data.subject || 'General'}`);
     const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`);
-    window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
+    window.location.assign(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`);
     setFormSent(true);
     reset();
     setTimeout(() => setFormSent(false), 5000);
@@ -311,6 +314,20 @@ export default function ThemeSoftBlue() {
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2 py-1 shadow-2xs">
             {navLinks.map((link) => {
+              if (link.external) {
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-blue-50/70 transition-all"
+                  >
+                    <span>{link.label}</span>
+                    <ExternalLink size={11} className="text-slate-400" />
+                  </a>
+                );
+              }
               const active = activeSection === link.href.slice(1);
               return (
                 <button
@@ -359,6 +376,17 @@ export default function ThemeSoftBlue() {
               <LinkedinIcon size={16} />
             </a>
 
+            <a
+              href={personalInfo.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 hover:border-blue-400 hover:text-blue-600 transition-colors"
+              aria-label="Technical Blog"
+              title="Technical Blog (blog.bhaveshkapre.in)"
+            >
+              <BookOpen size={16} />
+            </a>
+
             <button
               onClick={() => handleNavClick('#contact')}
               className="btn-soft-blue !min-h-[36px] !py-1.5 !px-4 !text-xs font-semibold"
@@ -388,15 +416,35 @@ export default function ThemeSoftBlue() {
               className="border-b border-slate-200 bg-[#FAFBFF] px-5 py-4 lg:hidden shadow-lg"
             >
               <div className="flex flex-col space-y-1">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.href}
-                    onClick={() => handleNavClick(link.href)}
-                    className="flex items-center justify-between rounded-lg px-3.5 py-2 text-xs font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-600"
-                  >
-                    <span>{link.label}</span>
-                  </button>
-                ))}
+                {navLinks.map((link) => {
+                  if (link.external) {
+                    return (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setMobileOpen(false)}
+                        className="flex items-center justify-between rounded-lg px-3.5 py-2 text-xs font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-600"
+                      >
+                        <span className="flex items-center gap-2">
+                          <BookOpen size={14} className="text-blue-600" />
+                          <span>{link.label}</span>
+                        </span>
+                        <ExternalLink size={13} className="text-slate-400" />
+                      </a>
+                    );
+                  }
+                  return (
+                    <button
+                      key={link.href}
+                      onClick={() => handleNavClick(link.href)}
+                      className="flex items-center justify-between rounded-lg px-3.5 py-2 text-xs font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-600"
+                    >
+                      <span>{link.label}</span>
+                    </button>
+                  );
+                })}
               </div>
 
               <div className="mt-3 pt-3 border-t border-slate-200">
@@ -450,6 +498,17 @@ export default function ThemeSoftBlue() {
                 <a href={personalInfo.resumeUrl} download className="btn-soft-outline">
                   <Download size={15} />
                   <span>Resume</span>
+                </a>
+                <a
+                  href={personalInfo.blog}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-soft-outline"
+                  aria-label="Read Technical Blog"
+                >
+                  <BookOpen size={15} />
+                  <span>Blog</span>
+                  <ExternalLink size={12} className="opacity-70" />
                 </a>
               </div>
             </div>
@@ -631,10 +690,10 @@ export default function ThemeSoftBlue() {
               Professional Background
             </span>
             <h2 className="font-display mt-3 text-3xl sm:text-4xl font-bold text-slate-900">
-              A backend developer learning, building, and ready to contribute.
+              Backend Engineer building resilient APIs, production POS systems, and AWS workloads.
             </h2>
             <p className="mt-2 text-sm sm:text-base text-slate-600">
-              I focus on clean APIs, working databases, and cloud basics — all built through real projects and self-study.
+              Designing reliable server-side architectures with Python, Django, MySQL, and automated AWS deployments.
             </p>
           </div>
 
@@ -928,10 +987,10 @@ export default function ThemeSoftBlue() {
               Value Proposition
             </span>
             <h2 className="font-display mt-3 text-3xl sm:text-4xl font-bold text-slate-900">
-              Why I'm a good bet as your next backend hire.
+              Engineering Capabilities &amp; Production Readiness.
             </h2>
             <p className="mt-2 text-sm sm:text-base text-slate-600">
-              Real project experience, cloud certifications, and genuine eagerness to grow on a team.
+              Real-world systems delivery, certified cloud fundamentals, and transparent engineering documentation.
             </p>
           </div>
 
@@ -1014,6 +1073,33 @@ export default function ThemeSoftBlue() {
                     <p className="text-xs sm:text-sm font-bold text-slate-900">{personalInfo.location}</p>
                   </div>
                 </div>
+
+                <div className="soft-blue-card p-4 bg-white flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <BookOpen size={18} className="text-blue-600" />
+                    <div>
+                      <p className="font-sans text-xs font-medium text-slate-500 uppercase tracking-wide">Technical Blog</p>
+                      <a
+                        href={personalInfo.blog}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs sm:text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+                      >
+                        <span>{personalInfo.blogDisplay || 'blog.bhaveshkapre.in'}</span>
+                        <ExternalLink size={13} className="text-slate-400" />
+                      </a>
+                    </div>
+                  </div>
+                  <a
+                    href={personalInfo.blog}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-soft-outline !py-1 !px-2.5 !min-h-0 text-xs"
+                    aria-label="Visit Technical Blog"
+                  >
+                    <ExternalLink size={14} />
+                  </a>
+                </div>
               </div>
 
               <div className="mt-6 flex items-center gap-3">
@@ -1034,6 +1120,16 @@ export default function ThemeSoftBlue() {
                   aria-label="LinkedIn Profile"
                 >
                   <LinkedinIcon size={18} />
+                </a>
+                <a
+                  href={personalInfo.blog}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-soft-outline !p-2.5"
+                  aria-label="Technical Blog"
+                  title="Technical Blog (blog.bhaveshkapre.in)"
+                >
+                  <BookOpen size={18} />
                 </a>
               </div>
             </div>
@@ -1099,7 +1195,20 @@ export default function ThemeSoftBlue() {
       {/* Footer */}
       <footer className="border-t border-slate-200 bg-slate-50 py-8">
         <div className="section-container flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} Bhavesh Kapre &middot; Backend &amp; Cloud Engineer</p>
+          <div className="flex items-center gap-3">
+            <p>&copy; {new Date().getFullYear()} Bhavesh Kapre &middot; Backend &amp; Cloud Engineer</p>
+            <span className="hidden sm:inline text-slate-300">&middot;</span>
+            <a
+              href={personalInfo.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex items-center gap-1 font-semibold text-slate-600 hover:text-blue-600 transition-colors"
+              title="Technical Blog"
+            >
+              <BookOpen size={14} />
+              <span>Blog</span>
+            </a>
+          </div>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center gap-1.5 font-semibold text-slate-700 hover:text-blue-600 transition-colors"

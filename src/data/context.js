@@ -2,22 +2,23 @@ import { Cloud, Code, Database, Globe, Wrench } from 'lucide-react';
 
 export const personalInfo = {
     name: "Bhavesh Kapre",
-    role: "Software Engineer | Cloud + Web Developer",
+    role: "Python Backend & Cloud Developer",
     location: "Indore, India",
-    email: "bhaveshkapre19@gmail.com",
+    email: "kapre1999@yahoo.com",
     github: "https://github.com/BhaveshKapre19",
-    linkedin: "https://www.linkedin.com/in/bhavesh-kapre",
-    aboutIntro: "I build practical software across web development, cloud infrastructure, databases, and machine learning. My projects include CMS platforms, MVC applications, NLP tools, ML dashboards, and AWS infrastructure work.",
-    aboutOutro: "I care about clear interfaces, maintainable code, and learning fast enough to turn unfamiliar problems into working systems.",
-    heroHeadline: "Building practical web apps and cloud systems.",
-    heroDescription: "I am Bhavesh Kapre, a developer focused on React interfaces, Python backends, AWS deployments, and database-backed applications that are clear, reliable, and useful.",
-    highlights: ['React', 'Python', 'AWS', 'MySQL'],
+    linkedin: "https://linkedin.com/in/bhavesh-kapre-367139216",
+    blog: "https://blog.bhaveshkapre.in",
+    aboutIntro: "I build server-side software with Python, Django, MySQL, and AWS. I built an offline POS and ERP system for a local retail store and maintain an active engineering blog at blog.bhaveshkapre.in.",
+    aboutOutro: "I prioritize clean API contracts, relational data integrity, and clear technical documentation.",
+    heroHeadline: "Server-side systems, REST APIs, and cloud deployments.",
+    heroDescription: "I am Bhavesh Kapre, a Python backend developer building dependable server architectures, desktop retail ERPs, and cloud-hosted systems.",
+    highlights: ['Python', 'Django REST', 'AWS', 'MySQL'],
     stats: [
-        { value: '6+', label: 'Projects shipped' },
-        { value: '4', label: 'Certifications' },
-        { value: 'Cloud', label: 'Infra focus' },
+        { value: '6+', label: 'Shipped projects' },
+        { value: '4', label: 'Cloud certifications' },
+        { value: 'Live', label: 'Technical blog' },
     ],
-    strengths: ['Cloud deployments', 'Backend problem solving', 'Clean UI implementation']
+    strengths: ['API architecture', 'Relational schema design', 'Client system delivery']
 };
 
 export const educationData = [

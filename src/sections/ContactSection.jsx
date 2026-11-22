@@ -10,6 +10,8 @@ import {
   MessageSquare,
   Copy,
   Check,
+  BookOpen,
+  ExternalLink,
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/SocialIcons';
 import { personalInfo } from '../data/portfolioData';
@@ -39,14 +41,14 @@ export default function ContactSection() {
     const body = encodeURIComponent(
       `Hello Bhavesh,\n\nName: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
     );
-    window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
+    window.location.assign(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`);
     setFormSent(true);
     reset();
     setTimeout(() => setFormSent(false), 5000);
   };
 
   return (
-    <section id="contact" className="section-shell border-t border-[#1e2f52]" ref={ref}>
+    <section id="contact" className="section-shell border-t border-subtle" ref={ref}>
       <div className="section-container">
         {/* Section Header */}
         <motion.div
@@ -99,7 +101,7 @@ export default function ContactSection() {
               </h3>
 
               {/* Email */}
-              <div className="flex items-center justify-between rounded-xl border border-[#1e2f52] bg-[#070c18] p-3.5 transition-colors hover:border-blue-400/40">
+              <div className="flex items-center justify-between rounded-xl border border-subtle bg-canvas-subtle p-3.5 transition-colors hover:border-blue-400/40">
                 <a
                   href={`mailto:${personalInfo.email}`}
                   className="flex items-center gap-3 text-slate-200 hover:text-blue-300 transition-colors"
@@ -114,7 +116,7 @@ export default function ContactSection() {
                 </a>
                 <button
                   onClick={() => handleCopy(personalInfo.email, 'email')}
-                  className="p-2 text-slate-400 hover:text-white rounded-lg border border-[#1e2f52] bg-[#101a30] transition-colors"
+                  className="p-2 text-slate-400 hover:text-white rounded-lg border border-subtle bg-terminal-subtle transition-colors"
                   aria-label="Copy Email"
                 >
                   {copiedType === 'email' ? <Check size={14} className="text-blue-400" /> : <Copy size={14} />}
@@ -122,7 +124,7 @@ export default function ContactSection() {
               </div>
 
               {/* Location */}
-              <div className="flex items-center gap-3 rounded-xl border border-[#1e2f52] bg-[#070c18] p-3.5">
+              <div className="flex items-center gap-3 rounded-xl border border-subtle bg-canvas-subtle p-3.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-950/60 border border-blue-400/30 text-blue-400">
                   <MapPin size={16} />
                 </div>
@@ -130,6 +132,36 @@ export default function ContactSection() {
                   <p className="text-[11px] uppercase text-slate-400 font-medium">Location</p>
                   <p className="text-sm font-semibold text-white">{personalInfo.location}</p>
                 </div>
+              </div>
+
+              {/* Technical Blog */}
+              <div className="flex items-center justify-between rounded-xl border border-subtle bg-canvas-subtle p-3.5 transition-colors hover:border-blue-400/40">
+                <a
+                  href={personalInfo.blog}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-slate-200 hover:text-blue-300 transition-colors"
+                >
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-950/60 border border-blue-400/30 text-blue-400">
+                    <BookOpen size={16} />
+                  </div>
+                  <div>
+                    <p className="text-[11px] uppercase text-slate-400 font-medium">Technical Blog</p>
+                    <p className="text-sm font-semibold text-white flex items-center gap-1.5">
+                      <span>{personalInfo.blogDisplay || 'blog.bhaveshkapre.in'}</span>
+                      <ExternalLink size={12} className="text-slate-400" />
+                    </p>
+                  </div>
+                </a>
+                <a
+                  href={personalInfo.blog}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-slate-400 hover:text-white rounded-lg border border-subtle bg-terminal-subtle transition-colors"
+                  aria-label="Visit Technical Blog"
+                >
+                  <ExternalLink size={14} />
+                </a>
               </div>
             </div>
 
@@ -141,7 +173,7 @@ export default function ContactSection() {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#1e2f52] bg-[#070c18] text-slate-300 hover:border-blue-400/50 hover:text-white transition-colors"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-subtle bg-canvas-subtle text-slate-300 hover:border-blue-400/50 hover:text-white transition-colors"
                   aria-label="GitHub"
                 >
                   <GithubIcon size={16} />
@@ -150,10 +182,20 @@ export default function ContactSection() {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#1e2f52] bg-[#070c18] text-slate-300 hover:border-blue-400/50 hover:text-white transition-colors"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-subtle bg-canvas-subtle text-slate-300 hover:border-blue-400/50 hover:text-white transition-colors"
                   aria-label="LinkedIn"
                 >
                   <LinkedinIcon size={16} />
+                </a>
+                <a
+                  href={personalInfo.blog}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-subtle bg-canvas-subtle text-slate-300 hover:border-blue-400/50 hover:text-white transition-colors"
+                  aria-label="Technical Blog"
+                  title="Technical Blog (blog.bhaveshkapre.in)"
+                >
+                  <BookOpen size={16} />
                 </a>
               </div>
             </div>
@@ -191,7 +233,7 @@ export default function ContactSection() {
                     type="text"
                     {...register('name', { required: 'Name is required' })}
                     placeholder="e.g. Rahul Sharma"
-                    className="w-full rounded-xl border border-[#1e2f52] bg-[#070c18] px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-blue-400 focus:outline-none transition-colors"
+                    className="w-full rounded-xl border border-subtle bg-canvas-subtle px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-blue-400 focus:outline-none transition-colors"
                   />
                   {errors.name && <p className="mt-1 text-xs text-rose-400">{errors.name.message}</p>}
                 </div>
@@ -208,7 +250,7 @@ export default function ContactSection() {
                       pattern: { value: /^\S+@\S+$/i, message: 'Valid email required' },
                     })}
                     placeholder="e.g. rahul@company.com"
-                    className="w-full rounded-xl border border-[#1e2f52] bg-[#070c18] px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-blue-400 focus:outline-none transition-colors"
+                    className="w-full rounded-xl border border-subtle bg-canvas-subtle px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-blue-400 focus:outline-none transition-colors"
                   />
                   {errors.email && <p className="mt-1 text-xs text-rose-400">{errors.email.message}</p>}
                 </div>
@@ -223,7 +265,7 @@ export default function ContactSection() {
                   type="text"
                   {...register('subject')}
                   placeholder="e.g. Backend Engineer Opportunity at Tech Corp"
-                  className="w-full rounded-xl border border-[#1e2f52] bg-[#070c18] px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-blue-400 focus:outline-none transition-colors"
+                  className="w-full rounded-xl border border-subtle bg-canvas-subtle px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-blue-400 focus:outline-none transition-colors"
                 />
               </div>
 
@@ -236,7 +278,7 @@ export default function ContactSection() {
                   rows={5}
                   {...register('message', { required: 'Message is required' })}
                   placeholder="Tell me about your team, tech stack, or the project you'd like to collaborate on..."
-                  className="w-full rounded-xl border border-[#1e2f52] bg-[#070c18] px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-blue-400 focus:outline-none transition-colors resize-none"
+                  className="w-full rounded-xl border border-subtle bg-canvas-subtle px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-blue-400 focus:outline-none transition-colors resize-none"
                 />
                 {errors.message && <p className="mt-1 text-xs text-rose-400">{errors.message.message}</p>}
               </div>

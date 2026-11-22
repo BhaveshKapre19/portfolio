@@ -9,7 +9,7 @@ export default function CertificationsSection() {
   const [ref, inView] = useInView({ threshold: 0.05 });
 
   return (
-    <section id="certifications" className="section-shell border-t border-[#1e2f52]" ref={ref}>
+    <section id="certifications" className="section-shell border-t border-subtle" ref={ref}>
       <div className="section-container">
         {/* Section Header */}
         <motion.div
@@ -43,7 +43,7 @@ export default function CertificationsSection() {
             >
               <div>
                 <div className="mb-4 flex items-center justify-between">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/30 bg-[#070c18] text-blue-400 group-hover:border-blue-400/60 transition-colors">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/30 bg-canvas-subtle text-blue-400 group-hover:border-blue-400/60 transition-colors">
                     <Award size={20} />
                   </div>
                   {cert.grade && (
@@ -71,7 +71,7 @@ export default function CertificationsSection() {
               </div>
 
               {cert.verificationUrl ? (
-                <div className="mt-6 pt-4 border-t border-[#1e2f52]">
+                <div className="mt-6 pt-4 border-t border-subtle">
                   <a
                     href={cert.verificationUrl}
                     target="_blank"
@@ -83,7 +83,7 @@ export default function CertificationsSection() {
                   </a>
                 </div>
               ) : (
-                <div className="mt-6 pt-4 border-t border-[#1e2f52] text-xs text-slate-400 flex items-center gap-1">
+                <div className="mt-6 pt-4 border-t border-subtle text-xs text-slate-400 flex items-center gap-1">
                   <ShieldCheck size={13} className="text-slate-400" />
                   <span>Verified Skill Assessment</span>
                 </div>

@@ -10,6 +10,7 @@ import {
   FolderKanban,
   CheckCircle2,
   Cpu,
+  BookOpen,
 } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
 import { projects } from '../data/portfolioData';
@@ -30,7 +31,7 @@ function ProjectModal({ project, onClose }) {
       onClick={onClose}
     >
       <motion.div
-        className="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-2xl border border-[#1e2f52] bg-[#0d1627] shadow-2xl"
+        className="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-2xl border border-subtle bg-slate-900 shadow-2xl"
         initial={{ scale: 0.94, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.94, opacity: 0, y: 20 }}
@@ -38,7 +39,7 @@ function ProjectModal({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Sticky Modal Header */}
-        <div className="sticky top-0 z-20 flex items-center justify-between border-b border-[#1e2f52] bg-[#0d1627]/95 px-5 py-4 backdrop-blur-md">
+        <div className="sticky top-0 z-20 flex items-center justify-between border-b border-subtle bg-slate-900/95 px-5 py-4 backdrop-blur-md">
           <div>
             <span className="text-xs font-semibold uppercase tracking-wide text-blue-400">
               {project.category}
@@ -47,7 +48,7 @@ function ProjectModal({ project, onClose }) {
           </div>
           <button
             onClick={onClose}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#1e2f52] text-slate-400 hover:border-blue-400 hover:text-white transition-colors"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-subtle text-slate-400 hover:border-blue-400 hover:text-white transition-colors"
             aria-label="Close modal"
           >
             <X size={18} />
@@ -57,31 +58,31 @@ function ProjectModal({ project, onClose }) {
         <div className="space-y-6 p-5 sm:p-7">
           {/* Screenshot Carousel */}
           {screenshots.length > 0 && (
-            <div className="relative overflow-hidden rounded-xl border border-[#1e2f52] bg-[#070c18] p-2">
+            <div className="relative overflow-hidden rounded-xl border border-subtle bg-canvas-subtle p-2">
               <img
                 src={screenshots[imgIndex]}
                 alt={`${project.title} preview ${imgIndex + 1}`}
                 width="1200"
                 height="675"
-                className="w-full rounded-lg object-contain max-h-[460px] bg-[#070c18]"
+                className="w-full rounded-lg object-contain max-h-[460px] bg-canvas-subtle"
               />
               {screenshots.length > 1 && (
                 <>
                   <button
-                    className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#101a30]/90 text-white shadow-lg border border-[#1e2f52] hover:bg-[#162442] transition-colors"
+                    className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-terminal-subtle text-white shadow-lg border border-subtle hover:bg-slate-800 transition-colors"
                     onClick={() => setImgIndex((i) => (i - 1 + screenshots.length) % screenshots.length)}
                     aria-label="Previous screenshot"
                   >
                     <ChevronLeft size={18} />
                   </button>
                   <button
-                    className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#101a30]/90 text-white shadow-lg border border-[#1e2f52] hover:bg-[#162442] transition-colors"
+                    className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-terminal-subtle text-white shadow-lg border border-subtle hover:bg-slate-800 transition-colors"
                     onClick={() => setImgIndex((i) => (i + 1) % screenshots.length)}
                     aria-label="Next screenshot"
                   >
                     <ChevronRight size={18} />
                   </button>
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 rounded-full bg-[#101a30]/80 px-3 py-1 border border-[#1e2f52]">
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 rounded-full bg-terminal-subtle px-3 py-1 border border-subtle">
                     {screenshots.map((_, idx) => (
                       <span
                         key={idx}
@@ -138,7 +139,7 @@ function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Actions & Links */}
-          <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-[#1e2f52]">
+          <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-subtle">
             {project.github && (
               <a
                 href={project.github}
@@ -148,6 +149,17 @@ function ProjectModal({ project, onClose }) {
               >
                 <GithubIcon size={15} />
                 <span>View Source on GitHub</span>
+              </a>
+            )}
+            {(project.liveUrl || project.live) && (
+              <a
+                href={project.liveUrl || project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-primary !min-h-[40px] !py-2 !px-4 text-xs font-semibold !bg-sky-600 hover:!bg-sky-500"
+              >
+                <ExternalLink size={15} />
+                <span>Visit Live System / Blog</span>
               </a>
             )}
             <button
@@ -174,7 +186,7 @@ export default function ProjectsSection() {
   });
 
   return (
-    <section id="projects" className="section-shell border-t border-[#1e2f52]" ref={ref}>
+    <section id="projects" className="section-shell border-t border-subtle" ref={ref}>
       <div className="section-container">
         {/* Section Header */}
         <motion.div
@@ -204,7 +216,7 @@ export default function ProjectsSection() {
               className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
                 activeCategory === cat
                   ? 'bg-blue-600 text-white shadow-sm'
-                  : 'border border-[#1e2f52] bg-[#101a30]/60 text-slate-400 hover:border-blue-400/50 hover:text-white'
+                  : 'border border-subtle bg-terminal-subtle text-slate-400 hover:border-blue-400/50 hover:text-white'
               }`}
             >
               {cat}
@@ -231,7 +243,7 @@ export default function ProjectsSection() {
               >
                 {/* Visual Header / Banner */}
                 <div
-                  className={`relative w-full overflow-hidden border-b border-[#1e2f52] bg-[#070c18] flex items-center justify-center ${
+                  className={`relative w-full overflow-hidden border-b border-subtle bg-canvas-subtle flex items-center justify-center ${
                     isFeatured ? 'h-64 sm:h-72' : 'h-52'
                   }`}
                 >
@@ -244,9 +256,18 @@ export default function ProjectsSection() {
                     loading="lazy"
                   />
                   {isFeatured && (
-                    <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full border border-blue-400/40 bg-[#0b1120]/90 px-3.5 py-1 text-xs font-semibold text-blue-200 backdrop-blur-md">
+                    <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full border border-blue-400/40 bg-slate-900/90 px-3.5 py-1 text-xs font-semibold text-blue-200 backdrop-blur-md">
                       <Cpu size={13} className="text-blue-400" />
                       <span>Featured Enterprise Architecture</span>
+                    </div>
+                  )}
+                  {project.liveUrl && (
+                    <div className="absolute top-3 right-3 flex items-center gap-1.5 rounded-full border border-sky-400/40 bg-sky-950/80 px-3 py-1 text-xs font-semibold text-sky-200 backdrop-blur-md">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-sky-400" />
+                      </span>
+                      <span>Live at blog.bhaveshkapre.in</span>
                     </div>
                   )}
                 </div>
@@ -280,7 +301,7 @@ export default function ProjectsSection() {
                     </p>
                   </div>
 
-                  <div className="mt-5 pt-4 border-t border-[#1e2f52]">
+                  <div className="mt-5 pt-4 border-t border-subtle">
                     <div className="flex flex-wrap gap-1.5 mb-4">
                       {project.tech.slice(0, isFeatured ? 7 : 4).map((t) => (
                         <span key={t} className="tech-chip">
@@ -295,20 +316,35 @@ export default function ProjectsSection() {
                     </div>
 
                     <div className="flex items-center justify-between text-xs font-semibold">
-                      {project.github ? (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <GithubIcon size={14} />
-                          <span>GitHub</span>
-                        </a>
-                      ) : (
-                        <span className="text-slate-400 font-mono text-xs">Desktop &amp; LAN</span>
-                      )}
+                      <div className="flex items-center gap-3">
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <GithubIcon size={14} />
+                            <span>GitHub</span>
+                          </a>
+                        )}
+                        {project.liveUrl && (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-sky-400 hover:text-sky-300 transition-colors font-medium"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <BookOpen size={13} />
+                            <span>Live Blog</span>
+                          </a>
+                        )}
+                        {!project.github && !project.liveUrl && (
+                          <span className="text-slate-400 font-mono text-xs">Desktop &amp; LAN</span>
+                        )}
+                      </div>
                       <span className="inline-flex items-center gap-1 text-blue-400 group-hover:text-blue-300 transition-colors text-xs font-medium">
                         <span>Inspect Specs</span>
                         <ExternalLink size={12} />
@@ -320,6 +356,40 @@ export default function ProjectsSection() {
             );
           })}
         </div>
+
+        {/* Technical Blog Spotlight Banner */}
+        <motion.div
+          className="mt-12 rounded-2xl border border-subtle bg-canvas-subtle p-6 sm:p-8 relative overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-2 rounded-full border border-blue-400/40 bg-blue-950/40 px-3 py-1 text-xs font-semibold text-blue-200">
+                <BookOpen size={13} className="text-blue-400" />
+                <span>Engineering Writing &amp; Deep Dives</span>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
+                Read Real Production Logs &amp; Architectural Breakdowns
+              </h3>
+              <p className="text-sm leading-relaxed text-slate-300">
+                I maintain <strong className="text-white font-mono">blog.bhaveshkapre.in</strong> where I publish in-depth articles on backend design patterns, AWS deployment strategies, ESC/POS printer hardware protocols, and database schema migrations.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <a
+                href="https://blog.bhaveshkapre.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-primary inline-flex items-center gap-2 !py-3 !px-5 text-sm font-semibold"
+              >
+                <span>Read Technical Blog</span>
+                <ExternalLink size={15} />
+              </a>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Modal */}

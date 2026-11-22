@@ -2,13 +2,10 @@
 /* <!-- hallmark: theme=TH-08-midnight-cobalt --> */
 import { motion } from 'framer-motion';
 import {
-  Code2,
   Cloud,
   Database,
   Server,
   ShieldCheck,
-  CheckCircle2,
-  Award,
   HeartHandshake,
   MapPin,
   Sparkles,
@@ -28,7 +25,7 @@ export default function AboutSection() {
   const [ref, inView] = useInView({ threshold: 0.1 });
 
   return (
-    <section id="about" className="section-shell border-t border-[#1e2f52]" ref={ref}>
+    <section id="about" className="section-shell border-t border-subtle" ref={ref}>
       <div className="section-container">
         {/* Section Header */}
         <motion.div
@@ -42,10 +39,10 @@ export default function AboutSection() {
             <span>Professional Background</span>
           </div>
           <h2 className="section-title">
-            A backend developer learning, building, and ready to contribute.
+            Backend Engineer building resilient APIs, production POS systems, and AWS workloads.
           </h2>
           <p className="section-subtitle">
-            I focus on clean APIs, working databases, and cloud basics — all built through real projects and self-study.
+            Designing reliable server-side architectures with Python, Django, MySQL, and automated AWS deployments.
           </p>
         </motion.div>
 
@@ -57,7 +54,7 @@ export default function AboutSection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           >
-            <div className="relative overflow-hidden rounded-xl border border-[#1e2f52] bg-[#070c18]">
+            <div className="relative overflow-hidden rounded-xl border border-subtle bg-canvas-subtle">
               <img
                 src={profileImg}
                 alt="Bhavesh Kapre"
@@ -66,7 +63,7 @@ export default function AboutSection() {
                 className="aspect-[4/4.5] w-full object-cover object-center filter contrast-[1.02]"
                 loading="lazy"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/80 to-transparent p-4 pt-10">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-4 pt-10">
                 <p className="font-display text-lg font-bold text-white">{personalInfo.name}</p>
                 <div className="flex items-center gap-1.5 text-xs text-blue-300 mt-0.5 font-medium">
                   <MapPin size={13} />
@@ -114,7 +111,7 @@ export default function AboutSection() {
               <div className="flex items-center gap-2 text-blue-300 mb-2">
                 <HeartHandshake size={18} />
                 <h4 className="text-sm font-bold uppercase tracking-wide text-white">
-                  Resilience &amp; Continuous Growth (2022 — 2026)
+                  Career Context &amp; Engineering Focus (2022 — Present)
                 </h4>
               </div>
               <p className="text-xs sm:text-sm leading-relaxed text-slate-300 font-normal">
@@ -125,7 +122,7 @@ export default function AboutSection() {
             {/* Engineering Principles */}
             <div>
               <span className="text-xs font-semibold uppercase tracking-wide text-slate-400 block mb-3">
-                What I Focus On
+                Core Engineering Commitments
               </span>
               <div className="grid sm:grid-cols-2 gap-3">
                 {aboutText.principles.map((principle) => (

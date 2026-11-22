@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import {
   Server,
-  Monitor,
   Cloud,
   Database,
   Printer,
@@ -26,7 +25,7 @@ export default function SkillsSection() {
   const [ref, inView] = useInView({ threshold: 0.05 });
 
   return (
-    <section id="skills" className="section-shell border-t border-[#1e2f52]" ref={ref}>
+    <section id="skills" className="section-shell border-t border-subtle" ref={ref}>
       <div className="section-container">
         {/* Section Header */}
         <motion.div
@@ -62,7 +61,7 @@ export default function SkillsSection() {
               >
                 <div>
                   <div className="mb-4 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/30 bg-[#070c18] text-blue-400 transition-colors group-hover:border-blue-400/60">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/30 bg-canvas-subtle text-blue-400 transition-colors group-hover:border-blue-400/60">
                       <Icon size={19} />
                     </div>
                     <div>
@@ -76,7 +75,7 @@ export default function SkillsSection() {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-2 pt-3 border-t border-[#1e2f52]">
+                <div className="flex flex-wrap gap-2 pt-3 border-t border-subtle">
                   {category.skills.map((skill) => (
                     <div
                       key={skill.name}

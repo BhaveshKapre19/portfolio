@@ -1,27 +1,27 @@
 /* <!-- hallmark: macrostructure=MS-01-bento-grid --> */
 /* <!-- hallmark: theme=TH-08-midnight-cobalt --> */
 import { motion } from 'framer-motion';
-import { Target, CheckCircle2, ShieldCheck, Zap, HardDrive, HeartHandshake, Terminal } from 'lucide-react';
+import { Target, CheckCircle2, ShieldCheck, Zap, HardDrive, Terminal } from 'lucide-react';
 import { whyHireCards } from '../data/portfolioData';
 import { useInView } from '../hooks/useInView';
 
 const iconMap = {
-  'Project Experience': Zap,
-  'Backend Skills': ShieldCheck,
-  'Cloud Ready': HardDrive,
-  'Growth Mindset': HeartHandshake,
+  'Production Delivery': Zap,
+  'Backend Core': ShieldCheck,
+  'Cloud Infrastructure': HardDrive,
+  'Technical Writing': Terminal,
 };
 
 export default function WhyHireSection() {
   const [ref, inView] = useInView({ threshold: 0.1 });
 
-  const primaryCard = whyHireCards[1] || whyHireCards[0];
-  const secondaryCards = whyHireCards.filter((_, i) => i !== 1);
+  const primaryCard = whyHireCards[0];
+  const secondaryCards = whyHireCards.slice(1);
 
-  const PrimaryIcon = iconMap[primaryCard.tag] || ShieldCheck;
+  const PrimaryIcon = iconMap[primaryCard.tag] || Zap;
 
   return (
-    <section id="why-hire" className="section-shell border-t border-[#1e2f52]" ref={ref}>
+    <section id="why-hire" className="section-shell border-t border-subtle" ref={ref}>
       <div className="section-container">
         {/* Section Header */}
         <motion.div
@@ -35,10 +35,10 @@ export default function WhyHireSection() {
             <span>Why Hire Me</span>
           </div>
           <h2 className="section-title">
-            Why I'm a good bet as your next backend hire.
+            Engineering Capabilities &amp; Production Readiness.
           </h2>
           <p className="section-subtitle">
-            Real project experience, cloud certifications, and genuine eagerness to grow on a team.
+            Real-world systems delivery, certified cloud fundamentals, and transparent engineering documentation.
           </p>
         </motion.div>
 
@@ -53,7 +53,7 @@ export default function WhyHireSection() {
           >
             <div>
               <div className="flex items-center justify-between mb-5">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/30 bg-[#070c18] text-blue-400">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-blue-400/30 bg-canvas-subtle text-blue-400">
                   <PrimaryIcon size={22} />
                 </div>
                 <span className="text-xs font-semibold uppercase tracking-wide text-blue-400">
@@ -73,17 +73,17 @@ export default function WhyHireSection() {
               <div className="mt-6 terminal-box space-y-2">
                 <div className="flex items-center gap-2 text-blue-300 font-bold text-xs font-mono">
                   <Terminal size={13} />
-                  <span>biller-erp — freelancing project</span>
+                  <span>biller-erp — production freelancing project</span>
                 </div>
                 <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-sans">
-                  Django REST backend · GST billing engine · ESC/POS thermal printing · SQLite database · Tauri v2 desktop client
+                  Django REST backend, GST billing engine, ESC/POS thermal printing, SQLite database, Tauri v2 desktop client
                 </p>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-[#1e2f52] flex items-center gap-2 text-xs font-semibold text-blue-300">
+            <div className="mt-6 pt-4 border-t border-subtle flex items-center gap-2 text-xs font-semibold text-blue-300">
               <CheckCircle2 size={15} />
-              <span>Verified via Certifications & Projects</span>
+              <span>Verified via Production Delivery &amp; Real Codebases</span>
             </div>
           </motion.div>
 
@@ -102,7 +102,7 @@ export default function WhyHireSection() {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/30 bg-[#070c18] text-blue-400">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/30 bg-canvas-subtle text-blue-400">
                         <Icon size={18} />
                       </div>
                       <span className="text-xs font-semibold uppercase tracking-wide text-blue-400">
@@ -119,9 +119,9 @@ export default function WhyHireSection() {
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-[#1e2f52] flex items-center gap-1.5 text-xs font-semibold text-blue-300">
+                  <div className="mt-4 pt-3 border-t border-subtle flex items-center gap-1.5 text-xs font-semibold text-blue-300">
                     <CheckCircle2 size={13} />
-                    <span>Verified via Projects & Certs</span>
+                    <span>Verified via Projects, Cloud Credentials &amp; Blog</span>
                   </div>
                 </motion.div>
               );

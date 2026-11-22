@@ -10,6 +10,8 @@ import {
   Cloud,
   ShieldCheck,
   Terminal,
+  BookOpen,
+  ExternalLink,
 } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
@@ -49,9 +51,9 @@ function Typewriter({ texts }) {
 }
 
 const metrics = [
-  { label: 'Core Stack', value: 'Python + AWS' },
-  { label: 'Primary Focus', value: 'APIs + Cloud' },
-  { label: 'Readiness', value: 'Backend roles' },
+  { label: 'Core Stack', value: 'Python, Django, AWS' },
+  { label: 'Production POS', value: 'Biller Client ERP' },
+  { label: 'Active Writing', value: 'blog.bhaveshkapre.in' },
 ];
 
 export default function HeroSection() {
@@ -59,7 +61,7 @@ export default function HeroSection() {
   const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section id="home" className="relative flex min-h-[88vh] items-center overflow-hidden border-b border-[#1e2f52] pt-24 pb-16 sm:pt-28">
+    <section id="home" className="relative flex min-h-[88vh] items-center overflow-hidden border-b border-subtle pt-24 pb-16 sm:pt-28">
       {/* Gentle ambient light */}
       <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[520px] h-[280px] bg-blue-500/10 blur-[140px] rounded-full pointer-events-none" />
 
@@ -79,7 +81,7 @@ export default function HeroSection() {
 
             <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
               Bhavesh Kapre
-              <span className="mt-2.5 block text-blue-400 font-bold">learning, building, ready to contribute.</span>
+              <span className="mt-2.5 block text-blue-400 font-bold">Python, Django, AWS &amp; Server-Side Systems</span>
             </h1>
 
             <div className="mx-auto mt-4 min-h-7 max-w-2xl font-sans text-base sm:text-lg font-semibold text-blue-300 lg:mx-0">
@@ -95,10 +97,17 @@ export default function HeroSection() {
                 <span>View projects</span>
                 <ArrowRight size={16} />
               </motion.button>
-              <motion.button onClick={scrollToContact} className="cta-secondary" whileTap={{ scale: 0.98 }}>
-                <Mail size={16} />
-                <span>Contact me</span>
-              </motion.button>
+              <a
+                href={personalInfo.blog}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-secondary"
+                aria-label="Read Technical Blog on blog.bhaveshkapre.in"
+              >
+                <BookOpen size={16} className="text-blue-400" />
+                <span>Read My Blog</span>
+                <ExternalLink size={13} className="text-slate-400" />
+              </a>
               <a
                 href={personalInfo.resumeUrl}
                 download
@@ -108,23 +117,27 @@ export default function HeroSection() {
                 <Download size={15} />
                 <span>Resume</span>
               </a>
+              <motion.button onClick={scrollToContact} className="cta-outline" whileTap={{ scale: 0.98 }}>
+                <Mail size={15} />
+                <span>Contact me</span>
+              </motion.button>
             </div>
           </motion.div>
 
-          {/* Right Column: System Profile Card */}
+          {/* Right Column: Production Workbench Console */}
           <motion.div
             className="bento-card overflow-hidden p-6 sm:p-7"
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55, delay: 0.1, ease: 'easeOut' }}
           >
-            <div className="flex items-center justify-between border-b border-[#1e2f52] pb-4">
+            <div className="flex items-center justify-between border-b border-subtle pb-4">
               <div>
                 <p className="text-xs uppercase tracking-wide text-blue-400 font-semibold">
-                  System Profile
+                  Engineering Profile
                 </p>
                 <h2 className="display mt-1 text-2xl font-bold text-white">
-                  Builder, learner, ready to contribute
+                  Production Stack &amp; Active Projects
                 </h2>
               </div>
               <ShieldCheck className="text-blue-400" size={26} />
@@ -133,19 +146,25 @@ export default function HeroSection() {
             <div className="mt-5 space-y-3 font-mono text-xs sm:text-sm">
               <div className="flex items-center gap-2 text-blue-300 font-bold">
                 <span className="text-slate-500">&gt;</span>
-                <span>deploy --target backend</span>
+                <span>cat active_stack.json</span>
               </div>
               <p className="terminal-box text-slate-200 leading-relaxed font-sans">
-                API design, authentication flow, database schema, Linux server setup, AWS services.
+                Python 3.12, Django 5.1, Django REST Framework, MySQL, AWS EC2, S3, Tauri v2 POS
               </p>
 
               <div className="flex items-center gap-2 text-blue-300 font-bold">
                 <span className="text-slate-500">&gt;</span>
-                <span>status --career</span>
+                <span>cat latest_publication.url</span>
               </div>
-              <p className="terminal-box text-slate-200 leading-relaxed font-sans">
-                Ready for backend, cloud, and API integration opportunities.
-              </p>
+              <a
+                href={personalInfo.blog}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="terminal-box text-blue-300 hover:text-white flex items-center justify-between transition-colors group font-sans"
+              >
+                <span>blog.bhaveshkapre.in — Backend &amp; Architecture Notes</span>
+                <ExternalLink size={13} className="text-slate-400 group-hover:text-blue-400 shrink-0" />
+              </a>
             </div>
 
             <div className="mt-5 grid grid-cols-3 gap-2.5">
@@ -164,11 +183,17 @@ export default function HeroSection() {
             <div className="mt-4 grid grid-cols-2 gap-2.5">
               <div className="terminal-box p-3 flex items-center gap-3">
                 <Server className="text-blue-400 shrink-0" size={18} />
-                <p className="text-xs sm:text-sm font-semibold text-white">Backend logic</p>
+                <div>
+                  <p className="text-xs font-semibold text-white">Backend APIs</p>
+                  <p className="text-[11px] text-slate-400">REST contracts &amp; JWT</p>
+                </div>
               </div>
               <div className="terminal-box p-3 flex items-center gap-3">
                 <Cloud className="text-blue-400 shrink-0" size={18} />
-                <p className="text-xs sm:text-sm font-semibold text-white">Cloud deploys</p>
+                <div>
+                  <p className="text-xs font-semibold text-white">Cloud Deploy</p>
+                  <p className="text-[11px] text-slate-400">AWS EC2, S3, IAM</p>
+                </div>
               </div>
             </div>
           </motion.div>

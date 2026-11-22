@@ -83,6 +83,51 @@
   --font-display: var(--font-display);
   --font-mono: var(--font-mono);
   --font-sans: var(--font-body);
+
+  --color-canvas: var(--color-bg);
+  --color-canvas-surface: var(--color-surface);
+  --color-canvas-elevated: var(--color-surface-elevated);
+  --color-canvas-terminal: var(--color-surface-terminal);
+  --color-border-subtle: var(--color-border);
+  --color-border-glow: var(--color-border-hover);
+  --color-brand-blue: var(--color-accent);
+  --color-brand-soft: var(--color-accent-soft);
+  --color-brand-bright: var(--color-accent-bright);
+}
+
+.border-subtle {
+  border-color: var(--color-border);
+}
+
+.border-glow:hover {
+  border-color: var(--color-border-hover);
+}
+
+.bg-canvas-subtle {
+  background-color: var(--color-surface);
+}
+
+.bg-terminal-subtle {
+  background-color: var(--color-surface-terminal);
+}
+
+.bg-surface-elevated {
+  background-color: var(--color-surface-elevated);
+}
+
+.blog-spotlight {
+  position: relative;
+  border: 1px solid var(--color-border-accent);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(16, 26, 48, 0.95), rgba(7, 12, 24, 0.98));
+  box-shadow: 0 4px 24px -2px rgba(59, 130, 246, 0.15);
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.blog-spotlight:hover {
+  border-color: var(--color-accent-soft);
+  box-shadow: 0 8px 32px -4px rgba(59, 130, 246, 0.25);
+  transform: translateY(-2px);
 }
 
 * {

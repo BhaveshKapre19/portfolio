@@ -17,7 +17,7 @@ export default function BackToTop() {
     <AnimatePresence>
       {visible && (
         <motion.button
-          className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-blue-400/40 bg-[#101a30]/90 text-blue-400 shadow-xl shadow-black/50 backdrop-blur-md hover:bg-blue-600 hover:text-white transition-colors"
+          className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-blue-400/40 bg-terminal-subtle/90 text-blue-400 shadow-xl shadow-black/50 backdrop-blur-md hover:bg-blue-600 hover:text-white transition-colors"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           initial={{ opacity: 0, scale: 0.8, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}

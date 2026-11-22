@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Menu, X, Send, Sun, ArrowRight } from 'lucide-react';
+import { Menu, X, Send, Sun, ArrowRight, ExternalLink, BookOpen } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 import { navLinks, personalInfo } from '../data/portfolioData';
 
@@ -15,7 +15,9 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
-      const sections = navLinks.map((link) => link.href.slice(1));
+      const sections = navLinks
+        .filter((link) => !link.external)
+        .map((link) => link.href.slice(1));
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el && el.getBoundingClientRect().top <= 160) {
@@ -41,7 +43,7 @@ export default function Navbar() {
     <motion.header
       className={`fixed left-0 right-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? 'border-b border-[#1e2f52] bg-[#0b1120]/95 shadow-lg shadow-black/40 backdrop-blur-md'
+          ? 'border-b border-subtle bg-canvas/95 shadow-lg shadow-black/40 backdrop-blur-md'
           : 'border-b border-transparent bg-transparent'
       }`}
       initial={{ y: -80 }}
@@ -53,35 +55,52 @@ export default function Navbar() {
           {/* Logo & Brand */}
           <button
             onClick={() => handleNavClick('#home')}
-            className="group flex items-center gap-3 text-left focus:outline-none"
+            className="group flex items-center gap-3 text-left focus:outline-none shrink-0"
             aria-label="Bhavesh Kapre Home"
           >
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/30 bg-[#101a30] text-sm font-bold text-blue-400 transition-colors group-hover:border-blue-400/70 shadow-xs">
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-blue-400/30 bg-canvas-subtle text-sm font-bold text-blue-400 transition-colors group-hover:border-blue-400/70 shadow-xs">
               BK
-              <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-blue-400 ring-2 ring-[#0b1120]" />
+              <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-blue-400 ring-2 ring-slate-900" />
             </div>
             <div className="hidden sm:block">
               <span className="font-display block text-sm font-bold tracking-tight text-white group-hover:text-blue-300 transition-colors">
                 Bhavesh Kapre
               </span>
               <span className="block text-xs uppercase tracking-wide text-slate-400 font-medium">
-                Backend &amp; Systems
+                Backend &amp; Cloud Engineer
               </span>
             </div>
           </button>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden items-center gap-1 rounded-full border border-[#1e2f52] bg-[#101a30]/80 p-1 backdrop-blur-md md:flex" aria-label="Main Navigation">
+          {/* Desktop Navigation Links — Streamlined & Uncongested */}
+          <nav className="hidden items-center gap-1 rounded-full border border-subtle bg-canvas-subtle/80 p-1 backdrop-blur-md lg:flex" aria-label="Main Navigation">
             {navLinks.map((link) => {
+              if (link.external) {
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-sky-300 hover:text-white hover:bg-surface-elevated/70 transition-colors"
+                    title="Read Technical Blog"
+                  >
+                    <BookOpen size={12} className="text-sky-400" />
+                    <span>{link.label}</span>
+                    <ExternalLink size={10} className="text-slate-400" />
+                  </a>
+                );
+              }
+
               const active = activeSection === link.href.slice(1);
               return (
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`relative rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
+                  className={`relative rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors ${
                     active
                       ? 'text-white'
-                      : 'text-slate-400 hover:text-white hover:bg-[#162442]/50'
+                      : 'text-slate-400 hover:text-white hover:bg-surface-elevated/50'
                   }`}
                 >
                   {active && (
@@ -97,24 +116,25 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right Action Buttons */}
-          <div className="hidden items-center gap-2 sm:flex">
-            {/* Theme Toggle Button */}
+          {/* Right Action Cluster — Compact & Balanced */}
+          <div className="hidden items-center gap-2 sm:flex shrink-0">
+            {/* Theme Toggle Icon Button */}
             <Link
               to="/theme"
-              className="flex items-center gap-1.5 rounded-full border border-blue-400/30 bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold text-blue-300 hover:bg-blue-500/20 hover:border-blue-400/60 transition-colors"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-subtle bg-canvas-subtle text-slate-400 transition-colors hover:border-blue-400/50 hover:text-white shadow-xs"
               title="Switch to Soft Blue theme"
+              aria-label="Switch to Soft Blue theme"
             >
-              <Sun size={14} className="text-blue-300" />
-              <span>Theme</span>
+              <Sun size={15} />
             </Link>
 
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2f52] bg-[#101a30] text-slate-400 transition-colors hover:border-blue-400/40 hover:text-white"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-subtle bg-canvas-subtle text-slate-400 transition-colors hover:border-blue-400/50 hover:text-white shadow-xs"
               aria-label="GitHub Profile"
+              title="GitHub Profile"
             >
               <GithubIcon size={16} />
             </a>
@@ -122,14 +142,15 @@ export default function Navbar() {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2f52] bg-[#101a30] text-slate-400 transition-colors hover:border-blue-400/40 hover:text-white"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-subtle bg-canvas-subtle text-slate-400 transition-colors hover:border-blue-400/50 hover:text-white shadow-xs"
               aria-label="LinkedIn Profile"
+              title="LinkedIn Profile"
             >
               <LinkedinIcon size={16} />
             </a>
             <button
               onClick={() => handleNavClick('#contact')}
-              className="cta-primary !min-h-[36px] !py-1.5 !px-3.5 !text-xs font-semibold"
+              className="cta-primary !min-h-[36px] !py-1.5 !px-3.5 !text-xs font-semibold ml-1"
             >
               <Send size={13} />
               <span>Let's Talk</span>
@@ -138,7 +159,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#1e2f52] bg-[#101a30] text-slate-300 md:hidden hover:text-white transition-colors"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-subtle bg-canvas-subtle text-slate-300 lg:hidden hover:text-white transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle mobile menu"
             aria-expanded={mobileOpen}
@@ -156,10 +177,29 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="border-b border-[#1e2f52] bg-[#0b1120]/98 px-5 py-5 shadow-2xl backdrop-blur-xl md:hidden"
+            className="border-b border-subtle bg-canvas/98 px-5 py-5 shadow-2xl backdrop-blur-xl lg:hidden"
           >
             <div className="flex flex-col space-y-1">
               {navLinks.map((link) => {
+                if (link.external) {
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setMobileOpen(false)}
+                      className="flex items-center justify-between rounded-lg px-3.5 py-2.5 text-sm font-medium text-sky-300 hover:bg-surface-elevated hover:text-white transition-colors"
+                    >
+                      <span className="flex items-center gap-2">
+                        <BookOpen size={16} className="text-sky-400" />
+                        <span>{link.label}</span>
+                      </span>
+                      <ExternalLink size={14} className="text-slate-400" />
+                    </a>
+                  );
+                }
+
                 const active = activeSection === link.href.slice(1);
                 return (
                   <button
@@ -168,7 +208,7 @@ export default function Navbar() {
                     className={`flex items-center justify-between rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors ${
                       active
                         ? 'bg-blue-500/15 text-blue-300 border border-blue-400/30'
-                        : 'text-slate-300 hover:bg-[#162442] hover:text-white'
+                        : 'text-slate-300 hover:bg-surface-elevated hover:text-white'
                     }`}
                   >
                     <span>{link.label}</span>
@@ -178,7 +218,7 @@ export default function Navbar() {
               })}
             </div>
 
-            <div className="mt-4 pt-3 border-t border-[#1e2f52]">
+            <div className="mt-4 pt-3 border-t border-subtle">
               <Link
                 to="/theme"
                 onClick={() => setMobileOpen(false)}
@@ -192,13 +232,13 @@ export default function Navbar() {
               </Link>
             </div>
 
-            <div className="mt-4 flex items-center justify-between border-t border-[#1e2f52] pt-4">
+            <div className="mt-4 flex items-center justify-between border-t border-subtle pt-4">
               <div className="flex gap-2">
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2f52] bg-[#101a30] text-slate-300"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-subtle bg-canvas-subtle text-slate-300"
                   aria-label="GitHub"
                 >
                   <GithubIcon size={16} />
@@ -207,10 +247,20 @@ export default function Navbar() {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2f52] bg-[#101a30] text-slate-300"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-subtle bg-canvas-subtle text-slate-300"
                   aria-label="LinkedIn"
                 >
                   <LinkedinIcon size={16} />
+                </a>
+                <a
+                  href={personalInfo.blog}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-subtle bg-canvas-subtle text-slate-300"
+                  aria-label="Technical Blog"
+                  title="Technical Blog"
+                >
+                  <BookOpen size={16} />
                 </a>
               </div>
               <button
